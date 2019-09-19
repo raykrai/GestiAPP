@@ -3,8 +3,6 @@
  */
 package com.salesianos.GestiaAPP.model;
 
-import java.time.LocalDate;
-
 import lombok.Data;
 
 /**
@@ -17,7 +15,6 @@ public class Reserve {
 
 	private Room reservedRoom;
 	private User reserveUser;
-	private LocalDate date;
+	private ReservedDate date;
 	private TimeZone timeZone;
-
 }
