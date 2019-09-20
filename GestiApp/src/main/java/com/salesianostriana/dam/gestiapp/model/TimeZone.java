@@ -14,6 +14,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * Clase modelo de tramos horarios, permite definir tramos horarios con nombre y duracion.
+ * 
  * @author jmbargueno
  *
  */

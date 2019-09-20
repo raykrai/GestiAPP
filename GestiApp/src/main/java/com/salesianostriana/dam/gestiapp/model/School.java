@@ -21,6 +21,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
+ * Clase modelo de escuela.
+ * 
  * @author jmbargueno
  *
  */
@@ -32,6 +34,8 @@ public class School {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(AccessLevel.NONE)
 	private long id;
+	
+	@NotNull
 	private String name, address;
 
 	@NotNull

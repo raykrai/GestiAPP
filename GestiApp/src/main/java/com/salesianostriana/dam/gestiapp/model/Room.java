@@ -13,6 +13,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * Clase modelo de aula.
+ * 
  * @author jmbargueno
  *
  */

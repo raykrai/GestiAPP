@@ -1,7 +1,6 @@
 /**
+ * Paquete de clases POJO.
  * 
- */
-/**
  * @author jmbargueno
  *
  */

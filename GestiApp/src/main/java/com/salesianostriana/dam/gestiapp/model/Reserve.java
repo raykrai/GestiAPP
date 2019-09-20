@@ -14,6 +14,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * Clase modelo de las reservas.
+ * 
  * @author jmbargueno
  *
  */
@@ -22,14 +24,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Reserve {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
 	@NotNull
 	@ManyToOne
 	private Room reservedRoom;
-
 	@NotNull
 	@ManyToOne
 	private User reserveUser;

@@ -17,6 +17,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * Clase modelo de fecha reservada, esta clase permite definir dias disponibles
+ * para reservar o no las aulas
+ * 
  * @author jmbargueno
  *
  */
