@@ -33,7 +33,7 @@ public class Reserve {
 	private Room reservedRoom;
 	@NotNull
 	@ManyToOne
-	private User reserveUser;
+	private AppUser reserveUser;
 	@NotNull
 	private ReservedDate date;
 	@NotNull
@@ -46,7 +46,7 @@ public class Reserve {
 	 * @param date         Fecha de la reserva
 	 * @param timeZone     Tramo horario de la reserva
 	 */
-	public Reserve(long id, @NotNull Room reservedRoom, @NotNull User reserveUser, @NotNull ReservedDate date,
+	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull ReservedDate date,
 			@NotNull TimeZone timeZone) {
 		super();
 		this.id = id;

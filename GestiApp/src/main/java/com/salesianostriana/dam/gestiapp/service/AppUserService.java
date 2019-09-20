@@ -2,29 +2,40 @@ package com.salesianostriana.dam.gestiapp.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.salesianostriana.dam.gestiapp.model.ReservedDate;
-import com.salesianostriana.dam.gestiapp.repository.ReservedDateRepository;
+import com.salesianostriana.dam.gestiapp.model.AppUser;
+import com.salesianostriana.dam.gestiapp.repository.AppUserRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
 
 @Service
-public class ReservedDateService extends BaseService<ReservedDate, Long, ReservedDateRepository> {
+public class AppUserService extends BaseService<AppUser, Long, AppUserRepository> {
 
+	
+	@Autowired
+	AppUserRepository userRepository;
+
+	
+	public AppUser searchByEmail (String email) {
+		return userRepository.findFirstByUserEmail(email);
+		
+	}
+	
 	@Override
-	public ReservedDate save(ReservedDate t) {
+	public AppUser save(AppUser t) {
 		// TODO Auto-generated method stub
 		return super.save(t);
 	}
 
 	@Override
-	public ReservedDate edit(ReservedDate t) {
+	public AppUser edit(AppUser t) {
 		// TODO Auto-generated method stub
 		return super.edit(t);
 	}
 
 	@Override
-	public void delete(ReservedDate t) {
+	public void delete(AppUser t) {
 		// TODO Auto-generated method stub
 		super.delete(t);
 	}
@@ -36,15 +47,17 @@ public class ReservedDateService extends BaseService<ReservedDate, Long, Reserve
 	}
 
 	@Override
-	public ReservedDate findById(Long id) {
+	public AppUser findById(Long id) {
 		// TODO Auto-generated method stub
 		return super.findById(id);
 	}
 
 	@Override
-	public List<ReservedDate> findAll() {
+	public List<AppUser> findAll() {
 		// TODO Auto-generated method stub
 		return super.findAll();
 	}
-
+	
+	
+	
 }

@@ -3,15 +3,18 @@
  */
 package com.salesianostriana.dam.gestiapp.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import com.salesianostriana.dam.gestiapp.model.*;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.salesianostriana.dam.gestiapp.service.UserService;
+import com.salesianostriana.dam.gestiapp.model.AppUser;
+import com.salesianostriana.dam.gestiapp.service.AppUserService;
 
 /**
  * Clase que implementa el usuario de seguridad
@@ -22,24 +25,25 @@ import com.salesianostriana.dam.gestiapp.service.UserService;
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	UserService userService;
+	@Autowired
+	AppUserService userService;
 
-	public UserDetailsServiceImpl(UserService servicio) {
+	public UserDetailsServiceImpl(AppUserService servicio) {
 		this.userService = servicio;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		User user = userService.searchByUsername(username);
+		AppUser user = userService.searchByEmail(username);
 
 		UserBuilder userBuilder = null;
 
 		if (user != null) {
-			userBuilder = User.withUsername(user.getUsername());
+			userBuilder = User.withUsername(user.getUserEmail());
 			userBuilder.disabled(false);
 			userBuilder.password(user.getPassword());
-			if (user.isAdmin()) {
+			if (user.getAdmin()) {
 				// Este caso indica que un ADMIN también puede hacer todo lo que hace un USER
 				userBuilder.authorities(new SimpleGrantedAuthority("ROLE_USER"),
 						new SimpleGrantedAuthority("ROLE_ADMIN"));

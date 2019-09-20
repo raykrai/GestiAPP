@@ -46,7 +46,7 @@ public class School {
 	private List<Room> roomList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", orphanRemoval = true)
-	private List<User> userList = new ArrayList<>();
+	private List<AppUser> userList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", orphanRemoval = true)
 	private List<Reserve> reserveList = new ArrayList<>();
@@ -61,7 +61,7 @@ public class School {
 	 * @param reserveList Lista de reserva de aulas en la escuela.
 	 */
 	public School(long id, String name, String address, @NotNull String schoolCode, List<Room> roomList,
-			List<User> userList, List<Reserve> reserveList) {
+			List<AppUser> userList, List<Reserve> reserveList) {
 		super();
 		this.id = id;
 		this.name = name;

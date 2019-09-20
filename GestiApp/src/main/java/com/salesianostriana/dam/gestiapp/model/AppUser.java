@@ -3,7 +3,6 @@
  */
 package com.salesianostriana.dam.gestiapp.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,12 +22,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class User {
+public class AppUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	
 	private String name, surname;
 
 	@NotNull
@@ -50,7 +48,7 @@ public class User {
 	 * @param validated Booleando que define si el usuario esta validado para el uso
 	 *                  de la plataforma o no.
 	 */
-	public User(long id, String name, String surname, @NotNull String userEmail, @NotNull String password,
+	public AppUser(long id, String name, String surname, @NotNull String userEmail, @NotNull String password,
 			Boolean admin, Boolean validated) {
 		super();
 		this.id = id;
