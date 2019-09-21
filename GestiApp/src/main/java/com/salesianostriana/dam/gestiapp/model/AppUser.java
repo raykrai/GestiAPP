@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -37,7 +38,10 @@ public class AppUser {
 	private String password;
 
 	private Boolean admin, validated;
-
+	
+	@ManyToOne
+	private School school;
+	
 	/**
 	 * @param id        Id del usuario.
 	 * @param name      Nombre del usuario.

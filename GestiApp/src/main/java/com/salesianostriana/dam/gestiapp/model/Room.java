@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -32,7 +33,10 @@ public class Room {
 
 	@NotNull
 	private int roomNum;
-
+	
+	@ManyToOne
+	private School school;
+	
 	/**
 	 * @param id      Id de la sala reservada.
 	 * @param name    Nombre de la sala reservada.

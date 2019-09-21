@@ -4,11 +4,15 @@
 package com.salesianostriana.dam.gestiapp.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,6 +39,9 @@ public class ReservedDate {
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
+	
+	@OneToMany(mappedBy="date")
+	private List<Reserve> reserves = new ArrayList<>();
 	private Boolean locked;
 
 	/**

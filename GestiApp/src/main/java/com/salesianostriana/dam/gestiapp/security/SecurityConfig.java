@@ -41,9 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/css/**", "/js/**", "/webjars/**", "/fonts/**", "/img/**", "/music/**", "/index")
-				.permitAll().antMatchers("/admin/**").hasAnyRole("ADMIN").anyRequest().authenticated().and().formLogin()
-				.loginPage("/").permitAll().and().logout().logoutUrl("/logout").permitAll().and().exceptionHandling()
+				.antMatchers("/css/**", "/js/**", "/webjars/**", "/fonts/**", "/img/**", "/music/**", "/vendor/**", "/index")
+				.permitAll()
+				.antMatchers("/admin/**").hasAnyRole("ADMIN").anyRequest().authenticated().and().formLogin()
+				.loginPage("/login").permitAll().and().logout().logoutUrl("/logout").permitAll().and().exceptionHandling()
 				.accessDeniedPage("/access-denied");
 
 		// Añadimos esto para poder seguir accediendo a la consola de H2

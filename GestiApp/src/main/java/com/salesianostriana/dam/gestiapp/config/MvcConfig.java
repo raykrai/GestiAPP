@@ -4,6 +4,7 @@
 package com.salesianostriana.dam.gestiapp.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,11 +14,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *
  */
 @Configuration
+@EnableWebMvc
 public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/");
+		registry.addViewController("/login");
 		registry.addViewController("/access-denied");
 	}
 
@@ -29,6 +31,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:static/js/");
 		registry.addResourceHandler("/music/**").addResourceLocations("classpath:static/music/");
 		registry.addResourceHandler("/fonts/**").addResourceLocations("classpath:static/fonts/");
+		registry.addResourceHandler("/vendor/**").addResourceLocations("classpath:static/vendor/");
 
 	}
 

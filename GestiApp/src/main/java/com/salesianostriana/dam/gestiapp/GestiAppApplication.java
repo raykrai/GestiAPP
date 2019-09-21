@@ -8,6 +8,8 @@ public class GestiAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GestiAppApplication.class, args);
+		
+		
 	}
 
 }
