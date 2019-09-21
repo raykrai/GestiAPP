@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/css/**", "/js/**", "/webjars/**", "/fonts/**", "/img/**", "/music/**", "/vendor/**", "/index")
 				.permitAll()
-				.antMatchers("/admin/**").hasAnyRole("ADMIN").anyRequest().authenticated().and().formLogin()
+				.antMatchers("/admin/**", "/h2-console/**").hasAnyRole("ADMIN").anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").permitAll().and().logout().logoutUrl("/logout").permitAll().and().exceptionHandling()
 				.accessDeniedPage("/access-denied");
 
