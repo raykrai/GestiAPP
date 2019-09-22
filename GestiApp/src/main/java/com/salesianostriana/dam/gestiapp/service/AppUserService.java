@@ -3,6 +3,8 @@ package com.salesianostriana.dam.gestiapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.gestiapp.model.AppUser;
@@ -19,6 +21,11 @@ public class AppUserService extends BaseService<AppUser, Long, AppUserRepository
 	
 	public AppUser searchByEmail (String email) {
 		return userRepository.findFirstByUserEmail(email);
+		
+	}
+	
+	public List<AppUser> searchByValitadedFalse () {
+		return userRepository.findAllByValidatedFalse();
 		
 	}
 	
@@ -56,6 +63,11 @@ public class AppUserService extends BaseService<AppUser, Long, AppUserRepository
 	public List<AppUser> findAll() {
 		// TODO Auto-generated method stub
 		return super.findAll();
+	}
+	
+	public Page<AppUser> findAllPageable(Pageable pageable) {
+        
+		 return userRepository.findAll(pageable);
 	}
 	
 	

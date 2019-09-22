@@ -39,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		UserBuilder userBuilder = null;
 
-		if (user != null) {
+		if (user != null & user.getValidated()) {
 			userBuilder = User.withUsername(user.getUserEmail());
 			userBuilder.disabled(false);
 			userBuilder.password(user.getPassword());

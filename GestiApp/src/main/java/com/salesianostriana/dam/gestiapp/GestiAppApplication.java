@@ -38,11 +38,23 @@ public class GestiAppApplication {
     		user.setSurname("García");
     		user.setUserEmail("321@321.com");
     		user.setPassword("321");
-    		user.setValidated(true);
-    		user.setAdmin(true);
+    		user.setValidated(false);
+    		user.setAdmin(false);
+    		
+    		AppUser user2 = new AppUser();
+    		
+    		user2.setName("Pepa");
+    		user2.setSurname("García");
+    		user2.setUserEmail("44@44.com");
+    		user2.setPassword("444");
+    		user2.setValidated(false);
+    		user2.setAdmin(false);
 
             servicio.save(user);
-
+            
+            servicio.save(user2);
+            
+            
             for (AppUser usuario : servicio.findAll()) {
                 usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
                 servicio.save(usuario);
