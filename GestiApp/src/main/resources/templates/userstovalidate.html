@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="../css/main-style.css" th:href="@{/css/main-style.css}" rel="stylesheet">
+  <link href="../static/css/main-style.css" th:href="@{/css/main-style.css}" rel="stylesheet">
 
 </head>
 
@@ -34,7 +34,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-            <h1 class="h3 mb-0 text-gray-800">Inicio</h1>
+            <h1 class="h3 mb-0 text-gray-800">Profesores a validar</h1>
           </div>
 
           <!-- Content Row -->
@@ -46,77 +46,37 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold">Texto de ejemplo</h6>
+                  <h6 class="m-0 font-weight-bold">Lista de usuarios no validados</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold">Texto de ejemplo</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                  </div>
-                  <div class="mt-4 text-center small">
-
-                  </div>
+                  <table class="table" id="tabla">
+                    <thead>
+                          <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">APELLIDOS</th>
+                        <th scope="col">¿VALIDAR?</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="user : ${users}">
+                          <td th:text="${user.id}"></td>
+                          <td th:text="${user.userEmail}"></td>
+                          <td th:text="${user.name}"></td>
+                          <td th:text="${user.surname}"></td>
+                          <td>
+                            <a href="#" th:href="@{/}">Editar</a> | <!-- TODO aquí para ver como validar -->
+                          </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-              <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold">Texto de ejemplo</h6>
-                </div>
-                <div class="card-body">
-                </div>
-              </div>
-
-              <!-- Color System -->
-              <div class="row">
-                <div class="col-lg-6 mb-4">
-                  
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col-lg-6 mb-4">
-
-              <!-- Illustrations -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold">Texto de ejemplo</h6>
-                </div>
-                <div class="card-body">
-                  <div class="text-center">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-        <!-- /.container-fluid -->
-
       </div>
       <!-- End of Main Content -->
 
