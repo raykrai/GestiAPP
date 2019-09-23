@@ -99,20 +99,8 @@ public class AppUserController {
 	 * }
 	 */
 
-	@GetMapping("/profile")
-	public String showFormProfile(Model model) {
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-		User user = (User) auth.getPrincipal();
-		AppUser appUser = appUserService.searchByEmail(user.getUsername());
-
-		model.addAttribute("userFormBean", new UserFormBean());
-		model.addAttribute("userProfile", appUser);
-
-		return "formUserProfile";
-	}
-	
+	//Muestra los datos del profesor en la Tabla
 	@GetMapping("/profileTable")
 	public String profileTable(Model model) {
 
@@ -121,33 +109,43 @@ public class AppUserController {
 		User user = (User) auth.getPrincipal();
 		AppUser appUser = appUserService.searchByEmail(user.getUsername());
 
+		model.addAttribute("userProf", appUser);
+
+		return "TablaUserProfile";
+	}
+
+
+	
+	@GetMapping("/profile")
+	public String showFormProfile(Model model) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		User user = (User) auth.getPrincipal();
+		AppUser appUser = appUserService.searchByEmail(user.getUsername());
+
 		model.addAttribute("userProfile", appUser);
 
-		return "userProfile";
-	}
-
-
-	@GetMapping("/profile/{id}")
-	public String FormValidatedEdit(@PathVariable("id") long id, Model model) {
-
-		AppUser appUser = appUserService.findById(id);
-		
-		model.addAttribute("usuario", appUser);
-		
-		return "redirect:/profile";
+		return "formUserProfile";
 	}
 	
+	//Coge el id del profesor
+		@GetMapping("/profile/{id}")
+		public String FormValidatedEdit(@PathVariable("id") long id, Model model) {
+
+			AppUser appUser = appUserService.findById(id);
+			
+			model.addAttribute("user", appUser);
+			
+			return "formUserProfile";
+		}
+	
 	@PostMapping("/profile/submit")
-	public String FormValidatedSubmit(@ModelAttribute("userFormBean") UserFormBean userFormBean) {
+	public String FormValidatedSubmit(@ModelAttribute("user") AppUser user) {
 		
-		AppUser apuser = new AppUser();
+		appUserService.save(user);
 		
-		apuser.setName(userFormBean.getName());
-		apuser.setSurname(userFormBean.getSurname());
-		apuser.setUserEmail(userFormBean.getUserEmail());
-		appUserService.edit(apuser);
-		
-		return "redirect:/profile";
+		return "redirect:/TablaUserProfile";
 		
 	}
 
