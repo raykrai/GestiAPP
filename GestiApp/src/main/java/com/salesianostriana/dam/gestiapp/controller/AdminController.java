@@ -32,19 +32,21 @@ public class AdminController {
 		return "userstovalidate";
 	}
 	
-	//Coge la id de un usuario
-	
+	//Coge la id de un usuario en el botón "Validar"
 	@GetMapping("/admin/validate/{id}")
 	public String FormValidatedEdit(@PathVariable("id") long id, Model model) {
 		
-		
+		boolean validate = true;
 		AppUser u = userService.findById(id);
 		
 		if(u != null) {
 			
+			//Set de true a un usuario y lo guarda
 			model.addAttribute("user", u);
+			u.setValidated(validate);
+			userService.save(u);
 			
-			return "admin/formularioUsuarioEditar";//le paso el formulario para editar usuarios
+			return "userstovalidate";//le paso el formulario para editar usuarios
 			
 		}else {
 			
