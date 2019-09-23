@@ -32,7 +32,7 @@ public class AdminController {
 		return "userstovalidate";
 	}
 	
-	//Coge la id de un usuario en el botón "Validar"
+	//Coge la id de un usuario en el botón "Validar".
 	@GetMapping("/admin/validate/{id}")
 	public String FormValidatedEdit(@PathVariable("id") long id, Model model) {
 		
