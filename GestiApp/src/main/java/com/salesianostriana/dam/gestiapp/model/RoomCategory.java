@@ -3,10 +3,15 @@
  */
 package com.salesianostriana.dam.gestiapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -27,11 +32,15 @@ public class RoomCategory {
 	@NotNull
 	private String categoryName;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomCategory", orphanRemoval = true)
+	private List<Room> roomList = new ArrayList <>();
+	
 	/**
 	 * 
 	 * @param id Id de la categoría
 	 * @param categoryName Nombre de la categoría
 	 */
+	
 	public RoomCategory(long id, @NotNull String categoryName) {
 		super();
 		this.id = id;
