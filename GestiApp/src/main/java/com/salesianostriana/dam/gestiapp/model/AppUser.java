@@ -34,7 +34,6 @@ public class AppUser {
 	@Column(unique = true)
 	private String userEmail;
 
-	@NotNull
 	private String password;
 
 	private Boolean admin, validated;
@@ -52,7 +51,7 @@ public class AppUser {
 	 * @param validated Booleando que define si el usuario esta validado para el uso
 	 *                  de la plataforma o no.
 	 */
-	public AppUser(long id, String name, String surname, @NotNull String userEmail, @NotNull String password,
+	public AppUser(long id, String name, String surname, @NotNull String userEmail, String password,
 			Boolean admin, Boolean validated) {
 		super();
 		this.id = id;

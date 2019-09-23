@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Tu App favorita para gestionar aulas en centros educativos">
+    <meta name="author" content="José M. Ruiz Laguna">
+
+    <title>GestiApp</title>
+
+    <!-- Custom fonts for this template-->
+
+    <link href="../vendor/fontawesome-free/css/all.min.css" th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../static/css/main-style.css" th:href="@{/css/main-style.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- FILAS EXTERIORES -->
+
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-8 col-md-4">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+
+            <!-- MAQUETACIÓN CON CARTA -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Perfil</h1>
+                  </div>
+
+                  <!-- FORMULARIO -->
+
+                  <form method="POST" th:object="${userProfile}">
+
+                    <!-- EMAIL -->
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="name" name="name" th:value="*{name}">
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="surname" name="surname" th:value="*{surname}">
+                    </div>
+                    
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="userEmail" name="userEmail" th:value="*{userEmail}">
+                    </div>
+                    <div class="container-login100-form-btn p-t-25">
+						<a
+													th:href="@{/profile/{id}(id=*{id})}">
+														<button type="button" class="btn btn-primary">
+															<span class="glyphicon glyphicon-shopping-cart"
+																aria-hidden="true"></span>&nbsp; Validar
+														</button>
+												</a>
+					</div>
+
+                  </form>
+
+                  <!-- FIN FORMULARIO -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- BS JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+
+</html>
