@@ -46,7 +46,7 @@ public class AdminController {
 			u.setValidated(validate);
 			userService.save(u);
 			
-			return "userstovalidate";//le paso el formulario para editar usuarios
+			return "redirect:/admin/validate";//le paso el formulario para editar usuarios
 			
 		}else {
 			
