@@ -41,7 +41,7 @@ public class AppUserController {
 		u.setUserEmail(userFormBean.getUserEmail());
 		u.setPassword(passwordEncoder.encode(userFormBean.getPassword()));
 		u.setAdmin(userFormBean.getAdmin());
-		u.setValidated(userFormBean.getValidated());
+		u.setValidated(false);
 		u.setSchool(userFormBean.getSchool());
 
 		appUserService.save(u);
