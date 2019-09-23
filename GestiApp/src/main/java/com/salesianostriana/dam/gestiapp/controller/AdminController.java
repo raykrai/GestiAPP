@@ -87,5 +87,10 @@ public class AdminController {
 		userService.deleteById(id);
 		return "redirect:/admin/users";
 	}
+	
+	@GetMapping("/admin/calendar")
+	public String calendar(Model model) {
+		return "calendar";
+	}
 
 }
