@@ -7,14 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-=======
-import org.springframework.web.bind.annotation.PathVariable;
-
->>>>>>> 5fac5413cc88c932c1e93a82b72498f2a5875443
 import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.service.AppUserService;
 
@@ -31,7 +26,6 @@ public class AdminController {
 	private AppUserService userService;
 
 	@GetMapping("/admin/validate")
-<<<<<<< HEAD
 	public String showFormValidated(Model model) {
 
 		model.addAttribute("users", userService.searchByValitadedFalse());
@@ -67,7 +61,9 @@ public class AdminController {
 		userService.save(u);
 		
 		return "redirect:/admin/validate";
-=======
+		
+	}
+		
 	public String showMenu(Model model) {
 
 		List<AppUser> users = userService.searchByValitadedFalse();
@@ -88,7 +84,6 @@ public class AdminController {
 		model.addAttribute("user", userService.findAll());
 		userService.deleteById(id);
 		return "redirect:/admin/users";
->>>>>>> 5fac5413cc88c932c1e93a82b72498f2a5875443
 	}
 
 }
