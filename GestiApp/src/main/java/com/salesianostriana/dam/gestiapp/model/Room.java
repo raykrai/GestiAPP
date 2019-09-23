@@ -37,16 +37,29 @@ public class Room {
 	@ManyToOne
 	private School school;
 	
+	@ManyToOne
+	private RoomCategory roomCategory;
+
 	/**
+	 * 
 	 * @param id      Id de la sala reservada.
 	 * @param name    Nombre de la sala reservada.
 	 * @param roomNum Numero del aula de escuela.
+	 * @param school  Escuela a la que le pertenece el aula.
+	 * @param roomCategory Categoría del aula.
 	 */
-	public Room(long id, @NotNull String name, @NotNull int roomNum) {
+	public Room(long id, @NotNull String name, @NotNull int roomNum, School school, RoomCategory roomCategory) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.roomNum = roomNum;
+		this.school = school;
+		this.roomCategory = roomCategory;
 	}
+	
+	
+
+	
+	
 
 }
