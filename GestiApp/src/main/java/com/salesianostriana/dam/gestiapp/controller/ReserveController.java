@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.salesianostriana.dam.gestiapp.formbeans.ReserveFormBean;
 import com.salesianostriana.dam.gestiapp.model.Reserve;
 import com.salesianostriana.dam.gestiapp.service.ReserveService;
+import com.salesianostriana.dam.gestiapp.service.RoomService;
 
 @Controller
 public class ReserveController {
