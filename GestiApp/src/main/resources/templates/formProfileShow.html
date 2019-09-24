@@ -45,11 +45,8 @@
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                  <form th:object="${userProfile}">
-                                  
-                                  	<input type="hidden" name="id" th:field="*{id}" />
-             							
+                                <div class="card-body" th:object="${userProfile}">
+	
 	                                  	<div class="form-group">
 	                                  		<label for="name">Nombre : </label>
 											<div class="col-sm-6">
@@ -74,9 +71,9 @@
 													placeholder="Nombre" required>
 											</div>
 										</div>
-											<button class="ml-2 btn btn-primary btn-danger btn-user btn-block col-4"><a href="" th:href="@{/profile/{id}(id=${userProfile.id})}">✏</a></button>
+											<a class="ml-2 btn btn-primary btn-danger btn-user btn-block col-4" href="" th:href="@{/profile/{id}(id=${userProfile.id})}">✏</a>
 											
-                                  </form>
+                                  
                                 </div>
                             </div>
                         </div>
