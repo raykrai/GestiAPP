@@ -3,15 +3,22 @@
  */
 package com.salesianostriana.dam.gestiapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Clase modelo de aula.
@@ -30,12 +37,17 @@ public class Room {
 
 	@NotNull
 	private String name;
-
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne
 	private School school;
-
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne
 	private RoomCategory roomCategory;
+	
+	@OneToMany(mappedBy="reservedRoom", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Reserve> listaReservas = new ArrayList <>();
 
 	/**
 	 * 

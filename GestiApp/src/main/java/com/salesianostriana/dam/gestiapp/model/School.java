@@ -17,8 +17,10 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Clase modelo de escuela.
@@ -41,13 +43,16 @@ public class School {
 	@NotNull
 	@Column(unique = true)
 	private String schoolCode;
-
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", orphanRemoval = true)
 	private List<Room> roomList = new ArrayList<>();
-
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", orphanRemoval = true)
 	private List<AppUser> userList = new ArrayList<>();
-
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", orphanRemoval = true)
 	private List<Reserve> reserveList = new ArrayList<>();
 

@@ -6,6 +6,7 @@ package com.salesianostriana.dam.gestiapp.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Clase modelo de las reservas.
@@ -32,6 +35,9 @@ public class Reserve {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@NotNull
 	@ManyToOne
 	private Room reservedRoom;
@@ -44,6 +50,9 @@ public class Reserve {
 	@NotNull
 	@ManyToOne
 	private TimeZone timeZone;
+	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne
 	private School school;
 	

@@ -15,7 +15,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author jmbargueno
@@ -31,7 +33,8 @@ public class RoomCategory {
 	private long id;
 	@NotNull
 	private String categoryName;
-	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomCategory", orphanRemoval = true)
 	private List<Room> roomList = new ArrayList <>();
 	

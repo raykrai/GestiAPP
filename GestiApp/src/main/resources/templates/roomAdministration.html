@@ -42,7 +42,7 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-12">
+                        <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -67,8 +67,8 @@
                                                 <td th:text="${room.name}"></td>
                                                 <td th:text="${room.school.name}"></td>
                                                 <td th:text="${room.roomCategory.categoryName}"></td>
-                                                <td><a href="" th:href="@{/admin/editUser/{id}(id=${room.id})}">✏</a></td>
-                                                <td><a href="" th:href="@{/admin/delUser/{id}(id=${room.id})}">❌</a></td>
+                                                <td><a href="" th:href="@{/admin/editRoom/{id}(id=${room.id})}">✏</a></td>
+                                                <td><a href="" th:href="@{/admin/delRoom/{id}(id=${room.id})}">❌</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
