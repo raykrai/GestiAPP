@@ -70,7 +70,12 @@
                                                 <td th:text="${user.userEmail}"></td>
                                                 <td th:text="${user.name}"></td>
                                                 <td th:text="${user.surname}"></td>
-                                                <td th:text="${user.school}"></td>
+                                                <td>
+                                                <span th:if="${user.school != null}">
+                                                	<span th:text="${user.school.name}"></span>
+                                                </span>
+                                                    <span th:unless="${user.school != null}">❌</span>
+                                                </td>
                                                 <td>
                                                     <span th:if="${user.admin == true}"> ✔</span>
                                                     <span th:unless="${user.admin == true}"> ❌</span>
