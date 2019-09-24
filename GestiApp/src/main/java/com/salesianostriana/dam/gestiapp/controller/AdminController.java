@@ -134,14 +134,14 @@ public class AdminController {
 
 	}
 
-	/** CALENDARIO **/
+/** CALENDARIO **/
 
 	@GetMapping("/admin/calendar")
 	public String calendar(Model model) {
 		return "calendar";
 	}
 
-	/** LISTA DE AULAS **/
+/** LISTA DE AULAS **/
 
 	@GetMapping("/admin/rooms")
 	public String showRooms(@RequestParam("pageSize") Optional<Integer> pageSize,
@@ -195,6 +195,8 @@ public class AdminController {
 		roomService.edit(room);
 		return "redirect:/admin/rooms";
 	}
+	
+/** LISTA DE CATEGORÍAS **/
 	
 	@GetMapping("/admin/roomCategories")
 	public String roomCategory(Model model) {
