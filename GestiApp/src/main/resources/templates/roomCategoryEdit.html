@@ -50,25 +50,13 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <table class="table" id="tabla">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">NOMBRE</th>
-                                                <th scope="col">✏</th>
-                                                <th scope="col">❌</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="category : ${categorys}">
-                                                <td th:text="${category.id}"></td>
-                                                <td th:text="${category.categoryName}"></td>
-                                                <td><a href="" th:href="@{/admin/editUser/{id}(id=${category.id})}">✏</a></td>
-                                                <td><a href="" th:href="@{/admin/delUser/{id}(id=${category.id})}">❌</a></td>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <form th:action="@{/admin/categorySubmit}" th:object="${category}" method="post">
+                                        <input th:if="${category.id != 0}" type="hidden" name="id" th:field="*{id}" />
+                                        <label for="nombreCer"> Nombre de Categoria:</label> 
+                                        <input type="text" class="form-control"  th:field="*{categoryName}"/>
+                                        </br>
+                                        <input type="submit" class="btn btn-danger" name="enviar" value="Guardar"/>
+                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -39,7 +39,7 @@ public class Reserve {
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@NotNull
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Room reservedRoom;
 	@NotNull
 	@ManyToOne

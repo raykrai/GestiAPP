@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.salesianostriana.dam.gestiapp.formbeans.RoomFormBean;
 import com.salesianostriana.dam.gestiapp.formbeans.UserFormBean;
 import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.model.Pager;
 import com.salesianostriana.dam.gestiapp.model.Room;
+import com.salesianostriana.dam.gestiapp.model.RoomCategory;
 import com.salesianostriana.dam.gestiapp.service.AppUserService;
 import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
 import com.salesianostriana.dam.gestiapp.service.RoomService;
@@ -47,7 +49,7 @@ public class AdminController {
 
 	@Autowired
 	private SchoolService schoolService;
-
+	
 	@Autowired
 	private RoomCategoryService roomCategoryService;
 
@@ -192,6 +194,47 @@ public class AdminController {
 
 		roomService.edit(room);
 		return "redirect:/admin/rooms";
+	}
+	
+	@GetMapping("/admin/roomCategories")
+	public String roomCategory(Model model) {
+
+		List<RoomCategory> categories = roomCategoryService.findAll();
+		model.addAttribute("categories", categories);
+		model.addAttribute("category", new RoomCategory());
+		return "roomCategories";
+	}
+	
+	@GetMapping("/admin/editCategory/{id}")
+	public String editCategory(@PathVariable("id") long id, Model model) {
+
+		RoomCategory editCategory = roomCategoryService.findById(id);
+		model.addAttribute("category", editCategory);
+		
+		return "roomCategoryEdit";
+	}
+	
+	@PostMapping("/admin/categorySubmit")
+	public String procesarCerveza(@ModelAttribute("category") RoomCategory c) {
+		roomCategoryService.edit(c);
+		return "redirect:/admin/roomCategories";
+	}
+	
+	@GetMapping("/admin/categoryDel/{id}")
+	public String roomCategoryDel(@PathVariable("id") long id) {
+		roomCategoryService.deleteById(id);
+		return "redirect:/admin/roomCategories";
+	}
+	
+	@PostMapping("/admin/categorySave")
+	public String addCerveza(@ModelAttribute("category") RoomCategory category, Model model) {
+		RoomCategory catego = new RoomCategory();
+		
+		catego.setCategoryName(category.getCategoryName());
+		
+		roomCategoryService.save(catego);
+		
+		return "redirect:/admin/roomCategories";
 	}
 
 }
