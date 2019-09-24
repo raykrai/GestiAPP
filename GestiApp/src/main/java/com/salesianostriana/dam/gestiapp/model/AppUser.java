@@ -12,7 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Clase modelo de usuario.
@@ -38,7 +40,8 @@ public class AppUser {
 	private String password;
 
 	private Boolean admin, validated;
-	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@ManyToOne
 	private School school;
 	
