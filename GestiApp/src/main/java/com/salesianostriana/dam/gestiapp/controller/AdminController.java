@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.salesianostriana.dam.gestiapp.formbeans.RoomFormBean;
 import com.salesianostriana.dam.gestiapp.formbeans.UserFormBean;
 import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.model.Pager;
 import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.service.AppUserService;
+import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
 import com.salesianostriana.dam.gestiapp.service.RoomService;
 import com.salesianostriana.dam.gestiapp.service.SchoolService;
 
@@ -45,7 +47,13 @@ public class AdminController {
 
 	@Autowired
 	private SchoolService schoolService;
-
+	
+	@Autowired
+	private RoomCategoryService roomCategoryService;
+	
+	
+/** VALIDACIÓN **/
+	
 	@GetMapping("/admin/validate")
 	public String showFormValidated(Model model) {
 
@@ -75,18 +83,8 @@ public class AdminController {
 		}
 	}
 
-	@PostMapping("/admin/validate/submit")
-	public String FormValidatedSubmit(@ModelAttribute("user") AppUser u) {
-
-		boolean validate = true;
-
-		u.setValidated(validate);
-		userService.save(u);
-
-		return "redirect:/admin/validate";
-
-	}
-
+/** LISTA DE USUARIOS **/
+	
 	@GetMapping("/admin/users")
 	public String showUsers(Model model) {
 
@@ -100,40 +98,6 @@ public class AdminController {
 		userService.deleteById(id);
 		model.addAttribute("users", userService.findAll());
 		return "redirect:/admin/users";
-	}
-
-	@GetMapping("/admin/calendar")
-	public String calendar(Model model) {
-		return "calendar";
-	}
-
-	@GetMapping("/admin/rooms")
-	public String showRooms(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page, Model model) {
-
-		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
-		// el tamaño de página inicial.
-		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
-
-		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
-		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
-		// del parámetro decrementado en 1.
-		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
-
-		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
-		// nuestro modelo
-		Page<Room> rooms = roomService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
-		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
-		// botones
-		// debe mostrar y cuál es el número de objetos a dibujar.
-		Pager pager = new Pager(rooms.getTotalPages(), rooms.getNumber(), BUTTONS_TO_SHOW);
-
-		model.addAttribute("rooms", rooms);
-		model.addAttribute("selectedPageSize", evalPageSize);
-		model.addAttribute("pageSizes", PAGE_SIZES);
-		model.addAttribute("pager", pager);
-		return "roomAdministration";
 	}
 
 	@GetMapping("/admin/editUser/{id}")
@@ -169,5 +133,69 @@ public class AdminController {
 
 		return "redirect:/admin/users";
 	}
+	
+/** CALENDARIO **/
+	
+	@GetMapping("/admin/calendar")
+	public String calendar(Model model) {
+		return "calendar";
+	}
+
+/** LISTA DE AULAS **/
+	
+	@GetMapping("/admin/rooms")
+	public String showRooms(@RequestParam("pageSize") Optional<Integer> pageSize,
+			@RequestParam("page") Optional<Integer> page, Model model) {
+
+		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
+		// el tamaño de página inicial.
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+
+		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
+		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
+		// del parámetro decrementado en 1.
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
+		// nuestro modelo
+		Page<Room> rooms = roomService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
+		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
+		// botones
+		// debe mostrar y cuál es el número de objetos a dibujar.
+		Pager pager = new Pager(rooms.getTotalPages(), rooms.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("rooms", rooms);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+		return "roomAdministration";
+	}
+	
+	@GetMapping("/admin/delRoom/{id}")
+	public String delRooms(@PathVariable("id") long id, Model model) {
+		roomService.deleteById(id);
+		model.addAttribute("rooms", roomService.findAll());
+		return "redirect:/admin/rooms";
+	}
+	
+	@GetMapping("/admin/editRoom/{id}")
+	public String editRoom(@PathVariable("id") long id, Model model) {
+		
+		model.addAttribute("room", roomService.findById(id));
+		model.addAttribute("roomCategories", roomCategoryService.findAll());
+		model.addAttribute("schools", schoolService.findAll());
+		return "formRoomEdit";
+	}
+	
+	@PostMapping("/admin/editRoom/submit")
+	public String editRoomSubmit(@ModelAttribute("room") Room room) {
+		
+		roomService.edit(room);
+		return "redirect:/admin/rooms";
+	}
+	
+	
+
 
 }
