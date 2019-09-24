@@ -138,12 +138,12 @@ public class AdminController {
 
 	@GetMapping("/admin/editUser/{id}")
 	public String editUser(@PathVariable("id") long id, Model model) {
-
 		model.addAttribute("listSchool", schoolService.findAll());
+		
 		AppUser editedAppUser = userService.findById(id);
 
 		if (editedAppUser != null) {
-			model.addAttribute("userForm", editedAppUser);
+			model.addAttribute("userFormBean", editedAppUser);
 			return "editUser";
 		} else {
 			return "redirect:/admin/users";
@@ -156,13 +156,12 @@ public class AdminController {
 			BCryptPasswordEncoder passwordEncoder) {
 
 		AppUser u = userService.findById(userFormBean.getId());
-		u.setId(userFormBean.getId());
+//		u.setId(userFormBean.getId());
 		u.setName(userFormBean.getName());
 		u.setSurname(userFormBean.getSurname());
 		u.setUserEmail(userFormBean.getUserEmail());
 		u.setPassword(passwordEncoder.encode(userFormBean.getPassword()));
 		u.setAdmin(userFormBean.getAdmin());
-		u.setValidated(userFormBean.getValidated());
 		u.setSchool(userFormBean.getSchool());
 
 		userService.edit(u);
