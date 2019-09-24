@@ -166,6 +166,9 @@ public class AdminController {
 		Pager pager = new Pager(rooms.getTotalPages(), rooms.getNumber(), BUTTONS_TO_SHOW);
 
 		model.addAttribute("rooms", rooms);
+		model.addAttribute("room", new Room());
+		model.addAttribute("roomCategories", roomCategoryService.findAll());
+		model.addAttribute("schools", schoolService.findAll());
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
@@ -196,6 +199,13 @@ public class AdminController {
 		return "redirect:/admin/rooms";
 	}
 	
+	@PostMapping("/admin/roomSave")
+	public String addCerveza(@ModelAttribute("room") Room room, Model model) {
+		
+		roomService.save(room);
+		
+		return "redirect:/admin/rooms";
+	}
 /** LISTA DE CATEGORÍAS **/
 	
 	@GetMapping("/admin/roomCategories")

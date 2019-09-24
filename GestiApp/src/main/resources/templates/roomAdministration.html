@@ -148,8 +148,26 @@
                                                     <div class="modal-body">
                                                         <form th:action="@{/admin/roomSave}" th:object="${room}" method="post">
                                                             <input th:if="${room.id != 0}" type="hidden" name="id" th:field="*{id}" />
-                                                            <label for="categoryName"> Nombre de categoria:</label>
-                                                            <input type="text" class="form-control" th:field="*{categoryName}" />
+                                                            <label for="name"> Nombre: </label>
+                                                            <input type="text" class="form-control" th:field="*{name}" />
+                                                            <br>
+                                                            <label for="name"> Colegio: </label>
+                                                            <select class="form-control" th:field="*{school}" required>
+																<option value="">N/A</option>
+																<option th:each="school : ${schools}"
+																		th:value="${school.id}"
+																		th:text="${school.name}">
+																</option>
+															</select>
+															<br>
+															<label for="name"> Categoría: </label>
+                                                            <select class="form-control" th:field="*{roomCategory}" required>
+																<option value="">N/A</option>
+																<option th:each="roomCategory : ${roomCategories}"
+																		th:value="${roomCategory.id}"
+																		th:text="${roomCategory.categoryName}">
+																</option>
+															</select>
                                                             </br>
                                                             <input type="submit" class="btn btn-danger" />
                                                         </form>
