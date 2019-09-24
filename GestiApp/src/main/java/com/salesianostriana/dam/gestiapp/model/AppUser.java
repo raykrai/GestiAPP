@@ -36,7 +36,6 @@ public class AppUser {
 	@Column(unique = true)
 	private String userEmail;
 
-	@NotNull
 	private String password;
 
 	private Boolean admin, validated;

@@ -1,6 +1,9 @@
 package com.salesianostriana.dam.gestiapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,30 +54,47 @@ public class AppUserController {
 		return "redirect:/";
 	}
 	
+	//Busca el usuario de la sesion actual por el email y lo añadimos como atributo al modelo
+	@GetMapping("/profile")
+	public String showFormProfile(Model model) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		User user = (User) auth.getPrincipal();
+		AppUser appUser = appUserService.searchByEmail(user.getUsername());
+
+		model.addAttribute("userProfile", appUser);
+
+		return "formProfileShow";
+	}
+	
+	//Busca usuario por id y pilla el de userProfile que es el usuario de la session, guarda en un atributo el objeto encontrado y 
+	//lo mando como atributo profileEdit al POST y el servicio edita el usuario de la session actual
 	@GetMapping("/profile/{id}")
-	public String showFormProfileEdit(@PathVariable("id") long id, Model model) {
+	public String showFormProfileEdit(@ModelAttribute("userProfile") AppUser u, Model model) {
 		
-		AppUser pEdit = appUserService.findById(id);
+		AppUser pEdit = appUserService.findById(u.getId());
 		
 		if(pEdit != null) {
 			
-			model.addAttribute("profile", pEdit);
+			model.addAttribute("profileEdit", pEdit);
 			
-			return "formularioProfileEditar";//le paso el formulario de editar productos
+			return "formProfileEdit";//le paso el formulario de editar productos
 			
 		}else {
 			
-			return "redirect:/";
+			return "redirect:/profile";
 		}
 		
 	}
 	
+	//Guarda en la base de datos el usuario con su nueva edición
 	@PostMapping("/profile/submit")
-	public String processFormProfileEdit(@ModelAttribute("profile") AppUser puser, Model model) {
+	public String processFormProfileEdit(@ModelAttribute("profileEdit") AppUser puser, Model model) {
 		
-		appUserService.save(puser);
+		appUserService.edit(puser);
 		
-		return "redirect:/";
+		return "redirect:/profile";
 	}
 
 }
