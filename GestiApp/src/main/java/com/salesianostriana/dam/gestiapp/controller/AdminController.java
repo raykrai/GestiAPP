@@ -196,13 +196,13 @@ public class AdminController {
 		return "redirect:/admin/rooms";
 	}
 	
-	@GetMapping("/admin/roomCategorys")
+	@GetMapping("/admin/roomCategories")
 	public String roomCategory(Model model) {
 
-		List<RoomCategory> categorys = roomCategoryService.findAll();
-		model.addAttribute("categorys", categorys);
+		List<RoomCategory> categories = roomCategoryService.findAll();
+		model.addAttribute("categories", categories);
 		model.addAttribute("category", new RoomCategory());
-		return "roomCategorys";
+		return "roomCategories";
 	}
 	
 	@GetMapping("/admin/editCategory/{id}")
@@ -216,14 +216,14 @@ public class AdminController {
 	
 	@PostMapping("/admin/categorySubmit")
 	public String procesarCerveza(@ModelAttribute("category") RoomCategory c) {
-		roomCategoryService.save(c);
-		return "redirect:/admin/roomCategorys";
+		roomCategoryService.edit(c);
+		return "redirect:/admin/roomCategories";
 	}
 	
 	@GetMapping("/admin/categoryDel/{id}")
 	public String roomCategoryDel(@PathVariable("id") long id) {
 		roomCategoryService.deleteById(id);
-		return "redirect:/admin/roomCategorys";
+		return "redirect:/admin/roomCategories";
 	}
 	
 	@PostMapping("/admin/categorySave")
@@ -234,7 +234,7 @@ public class AdminController {
 		
 		roomCategoryService.save(catego);
 		
-		return "redirect:/admin/roomCategorys";
+		return "redirect:/admin/roomCategories";
 	}
 
 }
