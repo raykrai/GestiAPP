@@ -47,13 +47,12 @@ public class AdminController {
 
 	@Autowired
 	private SchoolService schoolService;
-	
+
 	@Autowired
 	private RoomCategoryService roomCategoryService;
-	
-	
-/** VALIDACIÓN **/
-	
+
+	/** VALIDACIÓN **/
+
 	@GetMapping("/admin/validate")
 	public String showFormValidated(Model model) {
 
@@ -83,8 +82,8 @@ public class AdminController {
 		}
 	}
 
-/** LISTA DE USUARIOS **/
-	
+	/** LISTA DE USUARIOS **/
+
 	@GetMapping("/admin/users")
 	public String showUsers(Model model) {
 
@@ -100,14 +99,32 @@ public class AdminController {
 		return "redirect:/admin/users";
 	}
 
+	@PostMapping("/admin/editUser/submit")
+	public String editUserSubmit(@ModelAttribute("userFormBean") UserFormBean userFormBean,
+			BCryptPasswordEncoder passwordEncoder) {
+
+		AppUser u = userService.findById(userFormBean.getId());
+//		u.setId(userFormBean.getId());
+		u.setName(userFormBean.getName());
+		u.setSurname(userFormBean.getSurname());
+		u.setUserEmail(userFormBean.getUserEmail());
+		u.setPassword(passwordEncoder.encode(userFormBean.getPassword()));
+		u.setAdmin(userFormBean.getAdmin());
+		u.setSchool(userFormBean.getSchool());
+
+		userService.edit(u);
+
+		return "redirect:/admin/users";
+	}
+
 	@GetMapping("/admin/editUser/{id}")
 	public String editUser(@PathVariable("id") long id, Model model) {
-
 		model.addAttribute("listSchool", schoolService.findAll());
+
 		AppUser editedAppUser = userService.findById(id);
 
 		if (editedAppUser != null) {
-			model.addAttribute("userForm", editedAppUser);
+			model.addAttribute("userFormBean", editedAppUser);
 			return "editUser";
 		} else {
 			return "redirect:/admin/users";
@@ -115,34 +132,15 @@ public class AdminController {
 
 	}
 
-	@PostMapping("/admin/editUser/submit")
-	public String editUserSubmit(@ModelAttribute("userFormBean") UserFormBean userFormBean,
-			BCryptPasswordEncoder passwordEncoder) {
+	/** CALENDARIO **/
 
-		AppUser u = userService.findById(userFormBean.getId());
-		u.setId(userFormBean.getId());
-		u.setName(userFormBean.getName());
-		u.setSurname(userFormBean.getSurname());
-		u.setUserEmail(userFormBean.getUserEmail());
-		u.setPassword(passwordEncoder.encode(userFormBean.getPassword()));
-		u.setAdmin(userFormBean.getAdmin());
-		u.setValidated(userFormBean.getValidated());
-		u.setSchool(userFormBean.getSchool());
-
-		userService.edit(u);
-
-		return "redirect:/admin/users";
-	}
-	
-/** CALENDARIO **/
-	
 	@GetMapping("/admin/calendar")
 	public String calendar(Model model) {
 		return "calendar";
 	}
 
-/** LISTA DE AULAS **/
-	
+	/** LISTA DE AULAS **/
+
 	@GetMapping("/admin/rooms")
 	public String showRooms(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, Model model) {
@@ -171,66 +169,29 @@ public class AdminController {
 		model.addAttribute("pager", pager);
 		return "roomAdministration";
 	}
-<<<<<<< HEAD
 
-	@GetMapping("/admin/editUser/{id}")
-	public String editUser(@PathVariable("id") long id, Model model) {
-		model.addAttribute("listSchool", schoolService.findAll());
-		
-		AppUser editedAppUser = userService.findById(id);
-
-		if (editedAppUser != null) {
-			model.addAttribute("userFormBean", editedAppUser);
-			return "editUser";
-		} else {
-			return "redirect:/admin/users";
-		}
-
-	}
-
-	@PostMapping("/admin/editUser/submit")
-	public String editUserSubmit(@ModelAttribute("userFormBean") UserFormBean userFormBean,
-			BCryptPasswordEncoder passwordEncoder) {
-
-		AppUser u = userService.findById(userFormBean.getId());
-//		u.setId(userFormBean.getId());
-		u.setName(userFormBean.getName());
-		u.setSurname(userFormBean.getSurname());
-		u.setUserEmail(userFormBean.getUserEmail());
-		u.setPassword(passwordEncoder.encode(userFormBean.getPassword()));
-		u.setAdmin(userFormBean.getAdmin());
-		u.setSchool(userFormBean.getSchool());
-
-		userService.edit(u);
-
-		return "redirect:/admin/users";
-=======
-	
 	@GetMapping("/admin/delRoom/{id}")
 	public String delRooms(@PathVariable("id") long id, Model model) {
 		roomService.deleteById(id);
 		model.addAttribute("rooms", roomService.findAll());
 		return "redirect:/admin/rooms";
 	}
-	
+
 	@GetMapping("/admin/editRoom/{id}")
 	public String editRoom(@PathVariable("id") long id, Model model) {
-		
+
 		model.addAttribute("room", roomService.findById(id));
 		model.addAttribute("roomCategories", roomCategoryService.findAll());
 		model.addAttribute("schools", schoolService.findAll());
 		return "formRoomEdit";
->>>>>>> e61e81b55ad925648f53dcb49898f112316a7ed9
+
 	}
-	
+
 	@PostMapping("/admin/editRoom/submit")
 	public String editRoomSubmit(@ModelAttribute("room") Room room) {
-		
+
 		roomService.edit(room);
 		return "redirect:/admin/rooms";
 	}
-	
-	
-
 
 }
