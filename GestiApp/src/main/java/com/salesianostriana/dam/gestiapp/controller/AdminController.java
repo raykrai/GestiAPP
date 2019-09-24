@@ -53,9 +53,6 @@ public class AdminController {
 	@Autowired
 	private RoomCategoryService roomCategoryService;
 
-	@Autowired
-	private RoomCategoryService roomCategoryService;
-
 	/** VALIDACIÓN **/
 
 	@GetMapping("/admin/validate")
