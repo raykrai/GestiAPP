@@ -36,7 +36,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800">Inicio</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Formulario de edición</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -46,10 +46,6 @@
                         <!-- Area Chart -->
                         <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold">Novedades semana actual</h6>
-                                </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                         <form class="user col-12" th:action="@{/admin/editUser/submit}" th:object="${userFormBean}" method="post">
@@ -82,14 +78,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="col-md-4 control-label" for="radios">Permisos
-                                                    administrador.</label>
+                                                <label class="col-md-4 control-label" for="radios">¿Admin?</label>
                                                 <div class="col-md-6">
                                                     <div class="form-row">
                                                         <div class="radio col-md-6">
                                                             <label for="radios-0">
                                                                 <input type="radio" name="radios" id="radios-0" value="true" th:field="*{admin}">
-                                                                Si
+                                                                Sí
                                                             </label>
                                                         </div>
                                                         <div class="radio col-md-6">

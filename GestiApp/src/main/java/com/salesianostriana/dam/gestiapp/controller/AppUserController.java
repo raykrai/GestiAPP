@@ -92,9 +92,17 @@ public class AppUserController {
 	@PostMapping("/profile/submit")
 	public String processFormProfileEdit(@ModelAttribute("profileEdit") AppUser puser, Model model) {
 		
+		String plantilla;
+		
+		
+		if (!puser.getUserEmail().equals(appUserService.findById(puser.getId()).getUserEmail())) {
+			plantilla="redirect:/logout";
+		} else {
+			plantilla="redirect:/profile";
+		}
 		appUserService.edit(puser);
 		
-		return "redirect:/profile";
+		return plantilla;
 	}
 
 }
