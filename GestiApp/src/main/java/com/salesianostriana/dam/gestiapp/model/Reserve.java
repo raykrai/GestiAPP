@@ -3,9 +3,8 @@
  */
 package com.salesianostriana.dam.gestiapp.model;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -32,11 +30,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 public class Reserve {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@NotNull
@@ -46,29 +44,35 @@ public class Reserve {
 	@ManyToOne
 	private AppUser reserveUser;
 	@NotNull
-	@ManyToOne
-	private ReservedDate date;
-	
-	
+	private LocalDate date;
+	@NotNull
+	private TimeZone timeZone;
+
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@ManyToOne
 	private School school;
-	
+
 	/**
-	 * @param id           Id de la reserva
-	 * @param reservedRoom Sala reservada
-	 * @param reserveUser  Usuario reservante
-	 * @param date         Fecha de la reserva
-	 * @param timeZone     Tramo horario de la reserva
+	 * @param id
+	 * @param reservedRoom
+	 * @param reserveUser
+	 * @param date
+	 * @param dateTime
+	 * @param school
 	 */
-	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull ReservedDate date) {
+	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull LocalDate date,
+			@NotNull TimeZone dateTime, School school) {
 		super();
 		this.id = id;
 		this.reservedRoom = reservedRoom;
 		this.reserveUser = reserveUser;
 		this.date = date;
-		
+		this.timeZone = dateTime;
+		this.school = school;
 	}
+	
+
+	
 
 }

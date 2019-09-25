@@ -5,13 +5,14 @@ package com.salesianostriana.dam.gestiapp.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.salesianostriana.dam.gestiapp.model.Reserve;
 import com.salesianostriana.dam.gestiapp.model.ReserveChecker;
 import com.salesianostriana.dam.gestiapp.model.ReservedDate;
+import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.TimeZone;
 import com.salesianostriana.dam.gestiapp.repository.ReserveCheckerRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
@@ -36,7 +37,8 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 	@Autowired
 	ReservedDateService reserveDateService;
 
-	// No usar este metodo, usar el del final
+	// No usar este metodo. checkea fines de semana. Si devuelve true, significa que
+	// el weekend esta activo, se puede reservar.
 	public Boolean checkWeekend(LocalDate localDate) {
 		int dayOfWeek = localDate.getDayOfWeek().getValue();
 
@@ -53,40 +55,52 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 
 	}
 
-	// No usar este metodo, usar el del final
-	public Boolean checkReservedDate(LocalDate localDate, TimeZone timeZone) {
-
-		List<ReservedDate> reservedDateList = reserveDateService.findAll();
-
+	// No usar este metodo. Checkea que el administrador, no haya bloqueado la
+	// fecha. True, significa bloqueada
+	public Boolean checkFreeDate(LocalDate ldate) {
 		boolean result = false;
 
-		// Por cada reservedDate en la lista
-		for (ReservedDate reservedDate : reservedDateList) {
-			// Comprueba que la fecha dada tenga ya un reservedDate
-			if (reservedDate.getDate().equals(localDate)) {
-				// Si la fecha esta creada, comprueba que no este bloqueada
-				if (reservedDate.getLocked() == false) {
-					// Su no esta bloqueada, comprueba que no sea el mismo timeZone
-					if (reservedDate.getTimeZone().equals(timeZone)) {
-						result = false;
-					} else {
-						result = true;
-					}
-				} else {
-					result = false;
-				}
-
-			} else {
+		for (ReservedDate rDate : reservedDateService.findAll()) {
+			if (rDate.getDate() == ldate) {
 				result = true;
 			}
-
 		}
 		return result;
 
 	}
 
-	// Usar este metodo para comprobar si es posible la reserva o no.
-	public Boolean checkDay(LocalDate localDate, TimeZone timeZone) {
+	// No usar este metodo. Chequea dia, hora y clase. Si todo esta libre, devuelve
+	// true, es decir, se puede reservar.
+	public Boolean checkReservedDate(LocalDate ldate, TimeZone timeZone, Room room) {
+
+		boolean result = false;
+
+		for (Reserve reserve : reserveService.findAll()) {
+			// Comprueba fecha
+			if (reserve.getDate() == ldate) {
+				// Comprueba hora
+				if (!reserve.getTimeZone().getTime().equals(timeZone.getTime())) {
+					result = true;
+				} else {
+					if (room.getId() == reserve.getReservedRoom().getId()) {
+						result = false;
+					} else {
+						result = true;
+					}
+				}
+
+			} else {
+				result = true;
+			}
+		}
+		return result;
+
+	}
+
+	// Este es el método final que envuelve a los anteriores, ademas de comprobar
+	// que no sea ni fecha anterior, ni hora anterior. Si devuelve true, se puede
+	// reservar.
+	public Boolean checkReserve(LocalDate localDate, TimeZone timeZone, Room room) {
 
 		boolean result = false;
 		LocalDate actualDate = LocalDate.now();
@@ -96,17 +110,19 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		if (!localDate.isBefore(actualDate)) {
 			// Si estamos en el mismo dia, que compruebe la hora
 			if (localDate.isEqual(actualDate)) {
-				//Si la hora de la reserva no es anterior a la actual, entonces sigue el flujo
+				// Si la hora de la reserva no es anterior a la actual, entonces sigue el flujo
 				if (!timeZone.getTime().isBefore(actualTime)) {
-					//Si todo ok, chequea
-					if (this.checkReservedDate(localDate, timeZone) && this.checkWeekend(localDate)) {
+					// Si todo ok, chequea
+					if (!this.checkFreeDate(localDate) && this.checkWeekend(localDate)
+							&& this.checkReservedDate(localDate, timeZone, room)) {
 						result = true;
 					}
 				}
 
 			} else {
-				//Si no es el mismo dia, checkea
-				if (this.checkReservedDate(localDate, timeZone) && this.checkWeekend(localDate)) {
+				// Si no es el mismo dia, checkea
+				if (!this.checkFreeDate(localDate) && this.checkWeekend(localDate)
+						&& this.checkReservedDate(localDate, timeZone, room)) {
 					result = true;
 
 				}
@@ -116,4 +132,5 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		return result;
 
 	}
+
 }

@@ -41,29 +41,19 @@ public class ReservedDate {
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
-	
-	@ManyToOne
-	private TimeZone timeZone;
-
-	@OneToMany(mappedBy = "date")
-	private List<Reserve> reserves = new ArrayList<>();
-
-	private Boolean locked;
 
 	/**
-	 * @param id       Id de fecha reservada.
-	 * @param date     Fecha reservada.
-	 * @param timeZone Tramo horario de la reserva
-	 * @param locked   Booleano que define si esa fecha esta bloqueada o no para la
-	 *                 reserva.
+	 * @param id
+	 * @param date
 	 */
-	public ReservedDate(long id, @NotNull LocalDate date, TimeZone timeZone, List<Reserve> reserves, Boolean locked) {
+	public ReservedDate(long id, @NotNull LocalDate date) {
 		super();
 		this.id = id;
 		this.date = date;
-		this.timeZone = timeZone;
-		this.reserves = reserves;
-		this.locked = locked;
 	}
+	
+
+
+
 
 }

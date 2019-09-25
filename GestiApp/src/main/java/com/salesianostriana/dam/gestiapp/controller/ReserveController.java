@@ -35,11 +35,11 @@ public class ReserveController {
 
 	@GetMapping("/formReserve")
 	public String showFormReserve(Model model) {
-		List<TimeZone> tramos= timeZoneService.findAll();
-		List<RoomCategory> categorys= roomCategoryService.findAll();
+		List<TimeZone> timeZoneList= timeZoneService.findAll();
+		List<RoomCategory> categories = roomCategoryService.findAll();
 		
-		model.addAttribute("tramos", tramos);
-		model.addAttribute("categorys", categorys);
+		model.addAttribute("timeZoneList", timeZoneList);
+		model.addAttribute("categories", categories);
 		model.addAttribute("reserveFormBean", new ReserveFormBean());
 
 		return "formReserve";
@@ -57,6 +57,7 @@ public class ReserveController {
 		r.setReservedRoom(reserveFormBean.getReservedRoom());
 		r.setReserveUser(reserveFormBean.getReserveUser());
 		r.setDate(reserveFormBean.getDate());
+		r.setTimeZone(reserveFormBean.getTimeZone());
 
 		reserveService.save(r);
 

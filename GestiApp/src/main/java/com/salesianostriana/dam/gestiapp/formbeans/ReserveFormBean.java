@@ -1,36 +1,26 @@
 package com.salesianostriana.dam.gestiapp.formbeans;
 
+import java.time.LocalDate;
+
 import com.salesianostriana.dam.gestiapp.model.AppUser;
-import com.salesianostriana.dam.gestiapp.model.ReservedDate;
 import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.RoomCategory;
 import com.salesianostriana.dam.gestiapp.model.School;
-
+import com.salesianostriana.dam.gestiapp.model.TimeZone;
 
 public class ReserveFormBean {
 
 	private Room reservedRoom;
 	private AppUser reserveUser;
-	private ReservedDate date;
+	private LocalDate date;
+	private TimeZone timeZone;
 	private RoomCategory roomCategory;
-	
+
 	private School school;
 
 	public ReserveFormBean() {
 		super();
 	}
-	
-	public RoomCategory getRoomCategory() {
-		return roomCategory;
-	}
-
-
-
-	public void setRoomCategory(RoomCategory roomCategory) {
-		this.roomCategory = roomCategory;
-	}
-
-
 
 	public Room getReservedRoom() {
 		return reservedRoom;
@@ -48,15 +38,29 @@ public class ReserveFormBean {
 		this.reserveUser = reserveUser;
 	}
 
-	public ReservedDate getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(ReservedDate date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
-	
+	public TimeZone getTimeZone() {
+		return timeZone;
+	}
+
+	public void setTimeZone(TimeZone time) {
+		this.timeZone = time;
+	}
+
+	public RoomCategory getRoomCategory() {
+		return roomCategory;
+	}
+
+	public void setRoomCategory(RoomCategory roomCategory) {
+		this.roomCategory = roomCategory;
+	}
 
 	public School getSchool() {
 		return school;
