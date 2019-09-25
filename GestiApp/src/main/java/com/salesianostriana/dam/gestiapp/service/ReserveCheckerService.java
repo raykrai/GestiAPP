@@ -33,8 +33,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 
 	@Autowired
 	ReservedDateService reserveDateService;
-
-	ReserveChecker reserveChecker = this.findAll().get(1);
+	
 
 	public Boolean checkWeekend(LocalDateTime localDateTime) {
 		int dayOfWeek = localDateTime.getDayOfWeek().getValue();
@@ -42,7 +41,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		// Si el dia es sabado o domingo
 		if (dayOfWeek == 6 && dayOfWeek == 7) {
 			// Si el fin de semana esta activo
-			if (reserveChecker.getWeekendOn() == true) {
+			if (this.findAll().get(0).getWeekendOn() == true) {
 				return true;
 			} else {
 				return false;
