@@ -4,6 +4,7 @@
 package com.salesianostriana.dam.gestiapp.service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,16 +84,33 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		return result;
 
 	}
-	
-	
-	
-	//Usar este metodo para comprobar si es posible la reserva o no.
+
+	// Usar este metodo para comprobar si es posible la reserva o no.
 	public Boolean checkDay(LocalDate localDate, TimeZone timeZone) {
 
 		boolean result = false;
+		LocalDate actualDate = LocalDate.now();
+		LocalTime actualTime = LocalTime.now();
 
-		if (this.checkReservedDate(localDate, timeZone) && this.checkWeekend(localDate)) {
-			result = true;
+		// Si el dia que le pasamos no es anterior al de hoy
+		if (!localDate.isBefore(actualDate)) {
+			// Si estamos en el mismo dia, que compruebe la hora
+			if (localDate.isEqual(actualDate)) {
+				//Si la hora de la reserva no es anterior a la actual, entonces sigue el flujo
+				if (!timeZone.getTime().isBefore(actualTime)) {
+					//Si todo ok, chequea
+					if (this.checkReservedDate(localDate, timeZone) && this.checkWeekend(localDate)) {
+						result = true;
+					}
+				}
+
+			} else {
+				//Si no es el mismo dia, checkea
+				if (this.checkReservedDate(localDate, timeZone) && this.checkWeekend(localDate)) {
+					result = true;
+
+				}
+			}
 		}
 
 		return result;

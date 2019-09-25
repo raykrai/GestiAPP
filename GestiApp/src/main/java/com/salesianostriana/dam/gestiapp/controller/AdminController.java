@@ -20,9 +20,11 @@ import com.salesianostriana.dam.gestiapp.formbeans.RoomFormBean;
 import com.salesianostriana.dam.gestiapp.formbeans.UserFormBean;
 import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.model.Pager;
+import com.salesianostriana.dam.gestiapp.model.Reserve;
 import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.RoomCategory;
 import com.salesianostriana.dam.gestiapp.service.AppUserService;
+import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
 import com.salesianostriana.dam.gestiapp.service.RoomService;
 import com.salesianostriana.dam.gestiapp.service.SchoolService;
@@ -52,7 +54,10 @@ public class AdminController {
 	
 	@Autowired
 	private RoomCategoryService roomCategoryService;
-
+	
+	@Autowired
+	private ReserveService reserveService;
+	
 	/** VALIDACIÓN **/
 
 	@GetMapping("/admin/validate")
@@ -248,5 +253,18 @@ public class AdminController {
 		
 		return "redirect:/admin/roomCategories";
 	}
+/** RESERVAS **/
+	@GetMapping("/admin/reserves")
+	public String showReserves(Model model) {
 
+		List<Reserve> reserves = reserveService.findAll();
+		model.addAttribute("reserves", reserves);
+		return "reserveAdministration";
+	}
+	
+	@GetMapping("/admin/reserveDel/{id}")
+	public String reserveDel(@PathVariable("id") long id) {
+		reserveService.deleteById(id);
+		return "redirect:/admin/reserves";
+	}
 }
