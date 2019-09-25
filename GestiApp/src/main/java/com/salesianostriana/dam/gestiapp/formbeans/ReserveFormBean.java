@@ -3,6 +3,7 @@ package com.salesianostriana.dam.gestiapp.formbeans;
 import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.model.ReservedDate;
 import com.salesianostriana.dam.gestiapp.model.Room;
+import com.salesianostriana.dam.gestiapp.model.RoomCategory;
 import com.salesianostriana.dam.gestiapp.model.School;
 
 
@@ -11,12 +12,25 @@ public class ReserveFormBean {
 	private Room reservedRoom;
 	private AppUser reserveUser;
 	private ReservedDate date;
+	private RoomCategory roomCategory;
 	
 	private School school;
 
 	public ReserveFormBean() {
 		super();
 	}
+	
+	public RoomCategory getRoomCategory() {
+		return roomCategory;
+	}
+
+
+
+	public void setRoomCategory(RoomCategory roomCategory) {
+		this.roomCategory = roomCategory;
+	}
+
+
 
 	public Room getReservedRoom() {
 		return reservedRoom;
