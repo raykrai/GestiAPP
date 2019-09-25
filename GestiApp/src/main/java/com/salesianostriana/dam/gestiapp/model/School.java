@@ -36,7 +36,7 @@ public class School {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Setter(AccessLevel.NONE)
 	private long id;
-	
+
 	@NotNull
 	private String name, address;
 

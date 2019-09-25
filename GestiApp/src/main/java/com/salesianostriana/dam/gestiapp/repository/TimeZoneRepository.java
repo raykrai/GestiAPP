@@ -1,11 +1,18 @@
+/**
+ * 
+ */
 package com.salesianostriana.dam.gestiapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.salesianostriana.dam.gestiapp.model.RoomCategory;
+import com.salesianostriana.dam.gestiapp.model.TimeZone;
 
+/**
+ * @author jmbargueno
+ *
+ */
 @Repository
-public interface RoomCategoryRepository extends JpaRepository<RoomCategory, Long> {
+public interface TimeZoneRepository extends JpaRepository<TimeZone, Long>{
 
 }
