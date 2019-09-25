@@ -41,7 +41,6 @@ public class ReserveController {
 		r.setReservedRoom(reserveFormBean.getReservedRoom());
 		r.setReserveUser(reserveFormBean.getReserveUser());
 		r.setDate(reserveFormBean.getDate());
-		r.setTimeZone(reserveFormBean.getTimeZone());
 		r.setSchool(reserveFormBean.getSchool());
 
 		reserveService.save(r);

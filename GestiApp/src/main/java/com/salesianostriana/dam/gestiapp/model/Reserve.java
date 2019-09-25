@@ -47,9 +47,7 @@ public class Reserve {
 	@NotNull
 	@ManyToOne
 	private ReservedDate date;
-	@NotNull
-	@ManyToOne
-	private TimeZone timeZone;
+	
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
@@ -63,14 +61,13 @@ public class Reserve {
 	 * @param date         Fecha de la reserva
 	 * @param timeZone     Tramo horario de la reserva
 	 */
-	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull ReservedDate date,
-			@NotNull TimeZone timeZone) {
+	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull ReservedDate date) {
 		super();
 		this.id = id;
 		this.reservedRoom = reservedRoom;
 		this.reserveUser = reserveUser;
 		this.date = date;
-		this.timeZone = timeZone;
+		
 	}
 
 }
