@@ -36,7 +36,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800">Formulario de edición</h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{editForm}">Formulario de edición</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -71,7 +71,7 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <select id="school" class="custom-select" th:field="*{school}" required>
-                                                        <option value="" selected>Elige tu centro</option>
+                                                        <option value="" selected th:text="#{cSchool}">Elige tu centro</option>
                                                         <option th:each="school : ${listSchool}" th:value="${school.id}" th:text="${school.name}">None
                                                         </option>
                                                     </select>
@@ -83,14 +83,12 @@
                                                     <div class="form-row">
                                                         <div class="radio col-md-6">
                                                             <label for="radios-0">
-                                                                <input type="radio" name="radios" id="radios-0" value="true" th:field="*{admin}">
-                                                                Sí
+                                                                <input type="radio" name="radios" id="radios-0" value="true" th:field="*{admin}" th:text="#{yes}">
                                                             </label>
                                                         </div>
                                                         <div class="radio col-md-6">
                                                             <label for="radios-1">
-                                                                <input type="radio" name="radios" id="radios-1" value="false" th:field="*{admin}">
-                                                                No
+                                                                <input type="radio" name="radios" id="radios-1" value="false" th:field="*{admin}" th:text="#{not}">
                                                             </label>
                                                         </div>
                                                     </div>

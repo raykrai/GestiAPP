@@ -34,7 +34,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800">Administrar usuarios.</h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{admT}">Administrar profesores.</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -46,13 +46,13 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold">Lista de usuarios</h6>
+                                    <h6 class="m-0 font-weight-bold" th:text="#{listTeacher}">Lista de profesores</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <form th:action="@{/admin/categorySubmit}" th:object="${category}" method="post">
                                         <input th:if="${category.id != 0}" type="hidden" name="id" th:field="*{id}" />
-                                        <label for="nombreCer"> Nombre de Categoria:</label> 
+                                        <label for="nombreCer" th:text="#{categoryName}"> Nombre de Categoria:</label> 
                                         <input type="text" class="form-control"  th:field="*{categoryName}"/>
                                         </br>
                                         <input type="submit" class="btn btn-danger" name="enviar" value="Guardar"/>

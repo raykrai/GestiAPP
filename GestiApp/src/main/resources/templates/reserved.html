@@ -36,7 +36,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800">Resevas</h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{reservations}">Reservas</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -52,7 +52,7 @@
                                             <input th:if="${userFormBean.id != 0}" type="hidden" name="id" th:field="*{id}" />
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="fecha"> Fecha:</label> 
+                                                    <label for="fecha" th:text="#{date}"> Fecha:</label> 
                                                     <input type="date" class="form-control"  th:field="*{fecha}"/>
                                                 </div>
                                                 <div class="col-sm-6"> </div>
