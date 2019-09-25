@@ -4,7 +4,6 @@
 package com.salesianostriana.dam.gestiapp.model;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -46,6 +45,7 @@ public class Reserve {
 	@NotNull
 	private LocalDate date;
 	@NotNull
+	@ManyToOne
 	private TimeZone timeZone;
 
 	@EqualsAndHashCode.Exclude
@@ -71,8 +71,5 @@ public class Reserve {
 		this.timeZone = dateTime;
 		this.school = school;
 	}
-	
-
-	
 
 }
