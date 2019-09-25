@@ -3,7 +3,8 @@
  */
 package com.salesianostriana.dam.gestiapp.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,22 +38,28 @@ public class ReservedDate {
 
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDateTime date;
-	
-	@OneToMany(mappedBy="date")
+	private LocalDate date;
+
+	private TimeZone timeZone;
+
+	@OneToMany(mappedBy = "date")
 	private List<Reserve> reserves = new ArrayList<>();
+
 	private Boolean locked;
 
 	/**
-	 * @param id     Id de fecha reservada.
-	 * @param date   Fecha reservada.
-	 * @param locked Booleano que define si esa fecha esta bloqueada o no para la
-	 *               reserva.
+	 * @param id       Id de fecha reservada.
+	 * @param date     Fecha reservada.
+	 * @param timeZone Tramo horario de la reserva
+	 * @param locked   Booleano que define si esa fecha esta bloqueada o no para la
+	 *                 reserva.
 	 */
-	public ReservedDate(long id, @NotNull LocalDateTime date, Boolean locked) {
+	public ReservedDate(long id, @NotNull LocalDate date, TimeZone timeZone, List<Reserve> reserves, Boolean locked) {
 		super();
 		this.id = id;
 		this.date = date;
+		this.timeZone = timeZone;
+		this.reserves = reserves;
 		this.locked = locked;
 	}
 

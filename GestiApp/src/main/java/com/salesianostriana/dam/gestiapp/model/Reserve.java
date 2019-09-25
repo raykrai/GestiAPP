@@ -47,7 +47,7 @@ public class Reserve {
 	private AppUser reserveUser;
 	@NotNull
 	@ManyToOne
-	private LocalDateTime date;
+	private ReservedDate date;
 	
 	
 	@EqualsAndHashCode.Exclude
@@ -62,7 +62,7 @@ public class Reserve {
 	 * @param date         Fecha de la reserva
 	 * @param timeZone     Tramo horario de la reserva
 	 */
-	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull LocalDateTime date) {
+	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull ReservedDate date) {
 		super();
 		this.id = id;
 		this.reservedRoom = reservedRoom;
