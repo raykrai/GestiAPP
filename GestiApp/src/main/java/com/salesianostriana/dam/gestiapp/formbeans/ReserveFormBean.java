@@ -4,14 +4,14 @@ import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.model.ReservedDate;
 import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.School;
-import com.salesianostriana.dam.gestiapp.model.TimeZone;
+
 
 public class ReserveFormBean {
 
 	private Room reservedRoom;
 	private AppUser reserveUser;
 	private ReservedDate date;
-	private TimeZone timeZone;
+	
 	private School school;
 
 	public ReserveFormBean() {
@@ -42,13 +42,7 @@ public class ReserveFormBean {
 		this.date = date;
 	}
 
-	public TimeZone getTimeZone() {
-		return timeZone;
-	}
-
-	public void setTimeZone(TimeZone timeZone) {
-		this.timeZone = timeZone;
-	}
+	
 
 	public School getSchool() {
 		return school;
