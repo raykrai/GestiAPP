@@ -3,7 +3,7 @@
  */
 package com.salesianostriana.dam.gestiapp.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -38,7 +37,7 @@ public class ReservedDate {
 
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate date;
+	private LocalDateTime date;
 	
 	@OneToMany(mappedBy="date")
 	private List<Reserve> reserves = new ArrayList<>();
@@ -50,7 +49,7 @@ public class ReservedDate {
 	 * @param locked Booleano que define si esa fecha esta bloqueada o no para la
 	 *               reserva.
 	 */
-	public ReservedDate(long id, @NotNull LocalDate date, Boolean locked) {
+	public ReservedDate(long id, @NotNull LocalDateTime date, Boolean locked) {
 		super();
 		this.id = id;
 		this.date = date;

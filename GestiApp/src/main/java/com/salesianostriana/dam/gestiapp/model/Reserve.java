@@ -3,6 +3,7 @@
  */
 package com.salesianostriana.dam.gestiapp.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class Reserve {
 	private AppUser reserveUser;
 	@NotNull
 	@ManyToOne
-	private ReservedDate date;
+	private LocalDateTime date;
 	
 	
 	@EqualsAndHashCode.Exclude
@@ -61,7 +62,7 @@ public class Reserve {
 	 * @param date         Fecha de la reserva
 	 * @param timeZone     Tramo horario de la reserva
 	 */
-	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull ReservedDate date) {
+	public Reserve(long id, @NotNull Room reservedRoom, @NotNull AppUser reserveUser, @NotNull LocalDateTime date) {
 		super();
 		this.id = id;
 		this.reservedRoom = reservedRoom;
