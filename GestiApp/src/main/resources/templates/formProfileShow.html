@@ -34,7 +34,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800">Perfil</h1>
+                        <h1 class="h3 mb-0 text-gray-800"th:text="#{profile}">Perfil</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -50,7 +50,7 @@
                                 <p class="text-danger">Por motivos de seguridad, los cambios de contraseña deberán ser solicitados al administrador de su centro.</p>
 								<p class="text-danger">Ten en cuenta que si deseas modificar tu correo electrónico, deberás iniciar sesión de nuevo.</p>
 	                                  	<div class="form-group">
-	                                  		<label for="name">Nombre: </label>
+	                                  		<label for="name" th:text="#{name}">Nombre: </label>
 											<div class="col-sm-6">
 												<input type="text" class="form-control form-control-user"
 													name="name" id="name" th:field="*{name}"
@@ -58,7 +58,7 @@
 											</div>
 										</div>
 	                                  	<div class="form-group">
-	                                  		<label for="name">Apellidos: </label>
+	                                  		<label for="name" th:text="#{surname}">Apellidos: </label>
 											<div class="col-sm-6">
 												<input type="text" class="form-control form-control-user"
 													name="surname" id="surname" th:field="*{surname}"
@@ -66,7 +66,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-	                                  		<label for="name">Email: </label>
+	                                  		<label for="name" th:text="#{email}">Email: </label>
 											<div class="col-sm-6">
 												<input type="email" class="form-control form-control-user"
 
