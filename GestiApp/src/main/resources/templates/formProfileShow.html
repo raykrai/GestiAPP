@@ -47,8 +47,8 @@
                                 <!-- Card Body -->
                                 <div class="card-body" th:object="${userProfile}">
                                 
-                                <p class="text-danger">Por motivos de seguridad, los cambios de contraseña deberán ser solicitados al administrador de su centro.</p>
-								<p class="text-danger">Ten en cuenta que si deseas modificar tu correo electrónico, deberás iniciar sesión de nuevo.</p>
+                                <p class="text-danger" th:text="#{passwordNotAuth}">Por motivos de seguridad, los cambios de contraseña deberán ser solicitados al administrador de su centro.</p>
+								<p class="text-danger" th:text="#{editEmail}">Ten en cuenta que si deseas modificar tu correo electrónico, deberás iniciar sesión de nuevo.</p>
 	                                  	<div class="form-group">
 	                                  		<label for="name" th:text="#{name}">Nombre: </label>
 											<div class="col-sm-6">

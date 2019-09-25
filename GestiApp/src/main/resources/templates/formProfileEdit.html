@@ -34,7 +34,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800" th:text="'Editar - ' + ${profileEdit.name}"></h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{edit}">Editar</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -47,13 +47,13 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                 
-                                <p class="text-danger">Por motivos de seguridad, los cambios de contraseña deberán ser solicitados al administrador de su centro.</p>
-                                <p class="text-danger">Ten en cuenta que si deseas modificar tu correo electrónico, deberás iniciar sesión de nuevo.</p>
+                                <p class="text-danger" th:text="#{passwordNotAuth}">Por motivos de seguridad, los cambios de contraseña deberán ser solicitados al administrador de su centro</p>
+                                <p class="text-danger" th:text="#{editEmail}">Ten en cuenta que si deseas modificar tu correo electrónico, deberás iniciar sesión de nuevo</p>
                                   <form method="POST" th:action="@{/profile/submit}" th:object="${profileEdit}">
                                   	<input th:if="${profileEdit.id != 0}" type="hidden" name="id" th:field="*{id}" />
              							
 	                                  	<div class="form-group">
-	                                  		<label for="name">Nombre: </label>
+	                                  		<label for="name" th:text="#{name}">Nombre: </label>
 											<div class="col-sm-6">
 												<input type="text" class="form-control form-control-user"
 													name="name" id="name" th:field="*{name}"
@@ -61,7 +61,7 @@
 											</div>
 										</div>
 	                                  	<div class="form-group">
-	                                  		<label for="name">Apellidos: </label>
+	                                  		<label for="name" th:text="#{surname}">Apellidos: </label>
 											<div class="col-sm-6">
 												<input type="text" class="form-control form-control-user"
 													name="surname" id="surname" th:field="*{surname}"
@@ -69,7 +69,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-	                                  		<label for="name">Email: </label>
+	                                  		<label for="name" th:text="#{email}">Email: </label>
 											<div class="col-sm-6">
 												<input type="email" class="form-control form-control-user"
 													name="email" id="email" th:field="*{userEmail}"
@@ -93,7 +93,7 @@
 
 										
 											<button class="ml-2 btn btn-primary btn-danger btn-user btn-block col-4"
-											type="submit" name="guardar">Guardar</button>
+											type="submit" name="guardar" th:text="#{save}">Guardar</button>
                                   </form>
                                 </div>
                             </div>

@@ -34,7 +34,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800" th:text="'Editar - ' + ${room.name}"></h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{edit}">Editar</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -50,7 +50,7 @@
                                   	<input th:if="${room.id != 0}" type="hidden" name="id" th:field="*{id}" />
              							
 	                                  	<div class="form-group">
-	                                  		<label for="name">Nombre del aula: </label>
+	                                  		<label for="name" th:text="#{roomName}">Nombre del aula: </label>
 											<div class="col-sm-6">
 												<input type="text" class="form-control form-control-user"
 													name="name" id="name" th:field="*{name}"
@@ -58,7 +58,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="name">Colegio: </label>
+											<label for="name" th:text="#{school}">Colegio: </label>
 											<div class="col-sm-6">
 												<select class="form-control" th:field="*{school}" required>
 													<option value="">N/A</option>
@@ -70,7 +70,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="name">Especialización: </label>
+											<label for="name" th:text="#{specialization}">Especialización: </label>
 											<div class="col-sm-6">
 												<select class="form-control" th:field="*{roomCategory}" required>
 													<option value="">N/A</option>
@@ -83,7 +83,7 @@
 											<br>
 										</div>
 											<button class="ml-2 btn btn-primary btn-danger btn-user btn-block col-4"
-											type="submit" name="editar">Editar</button>
+											type="submit" name="editar" th:text="#{edit}">Editar</button>
                                   </form>
                                 </div>
                             </div>

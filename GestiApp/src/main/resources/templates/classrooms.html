@@ -34,7 +34,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-            <h1 class="h3 mb-0 text-gray-800">Profesores a validar</h1>
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{validate}">Profesores a validar</h1>
           </div>
 
           <!-- Content Row -->
@@ -46,7 +46,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold">Lista de usuarios no validados</h6>
+                  <h6 class="m-0 font-weight-bold" th:text="#{listUnvTeacher}">Lista de profesores no validados</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -54,10 +54,10 @@
                     <thead>
                           <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">EMAIL</th>
-                        <th scope="col">NOMBRE</th>
-                        <th scope="col">APELLIDOS</th>
-                        <th scope="col">¿VALIDAR?</th>
+                        <th scope="col" th:text="#{email}">EMAIL</th>
+                        <th scope="col" th:text="#{name}">NOMBRE</th>
+                        <th scope="col" th:text="#{surname}">APELLIDOS</th>
+                        <th scope="col" th:text="#{validateT}" >VALIDAR</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -67,7 +67,7 @@
                           <td th:text="${user.name}"></td>
                           <td th:text="${user.surname}"></td>
                           <td>
-                            <a href="#" th:href="@{/}">Editar</a> | <!-- TODO aquí para ver como validar -->
+                            <a href="#" th:href="@{/}" th:text="#{edit}">Editar</a> | <!-- TODO aquí para ver como validar -->
                           </td>
                       </tr>
                     </tbody>

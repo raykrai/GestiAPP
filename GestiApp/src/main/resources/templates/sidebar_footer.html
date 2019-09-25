@@ -70,7 +70,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="userstovalidate.html" th:href="@{/admin/validate}" th:text="#{validate}">Validación de profesores</a>
             <a class="collapse-item" href="utilities-color.html" th:href="@{/admin/users}" th:text="#{admT}">Administrar profesores</a>
-            <a class="collapse-item" href="utilities-border.html" th:text="#{admReserve}">Administrar reservas</a>
+            <a class="collapse-item" href="utilities-border.html" th:href="@{/admin/reserves}" th:text="#{admReserve}">Administrar reservas</a>
             <a class="collapse-item" href="roomAdministration.html" th:href="@{/admin/rooms}" th:text="#{admRooms}">Administrar aulas</a>
             <a class="collapse-item" href="roomCategorys.html" th:href="@{/admin/roomCategories}" th:text="#{admC}">Administrar categorías</a>
           </div>
@@ -88,19 +88,13 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span th:text="#{pages}">Pages</span>
+          <i class="fas fa-flag"></i>
+          <span th:text="#{language}">Idioma</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <a class="collapse-item" href="https://icons8.com/icon/18099/spain-flag" th:href="@{/?lang=es_ES}">Español</a>
+            <a class="collapse-item" href="index.html" th:href="@{/?lang=eng_ENG}">Inglés</a>
           </div>
         </div>
       </li>
@@ -117,6 +111,26 @@
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span th:text="#{youreservers}">Tus reservas</span></a>
+      </li>
+      
+    <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+      <a th:href="@{/logout}" class="ml-3"><i class="fas fa-sign-out-alt"></i></a>
+    </ul>
+    <!-- End of Sidebar -->
+      
+            <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIdioma" aria-expanded="true" aria-controls="collapseIdioma">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Idioma</span>
+        </a>
+        <div id="collapseIdioma" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="index.html" th:href="@{/?lang=es_ES}">Español</a>
+            <a class="collapse-item" href="index.html" th:href="@{/?lang=eng_ENG}">Inglés</a>
+          </div>
+        </div>
       </li>
 
       <!-- Divider -->

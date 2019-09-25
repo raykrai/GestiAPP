@@ -34,7 +34,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800">Inicio</h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{start}">Inicio</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -46,23 +46,23 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold">Novedades semana actual</h6>
+                                    <h6 class="m-0 font-weight-bold" th:text="#{news}">Novedades semana actual</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
                                         <div class="row">
                                             <div class="col-12"></div>
-                                            <div class="col-1">Hora</div>
+                                            <div class="col-1" th:text="#{time}">Hora</div>
                                             <div class="col-11">
                                                 <div class="row">
-                                                    <div class="col">Lunes</div>
-                                                    <div class="col">Martes</div>
-                                                    <div class="col">Miercoles</div>
-                                                    <div class="col">Jueves</div>
-                                                    <div class="col">Viernes</div>
-                                                    <div class="col">Sabado</div>
-                                                    <div class="col">Domingo</div>
+                                                    <div class="col" th:text="#{monday}">Lunes</div>
+                                                    <div class="col" th:text="#{tueday}">Martes</div>
+                                                    <div class="col" th:text="#{wednesday}">Miercoles</div>
+                                                    <div class="col" th:text="#{thursday}">Jueves</div>
+                                                    <div class="col" th:text="#{friday}">Viernes</div>
+                                                    <div class="col" th:text="#{saturday}">Sabado</div>
+                                                    <div class="col" th:text="#{sunday}">Domingo</div>
                                                 </div>
                                             </div>
                                         </div>
