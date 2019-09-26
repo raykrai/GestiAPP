@@ -74,7 +74,7 @@
 												<td th:text="${reserve.id}"></td>
 												<td th:text="${reserve.reservedRoom.name}"></td>
 												<td th:text="${reserve.reserveUser.name}"></td>
-												<td th:text="${reserve.date}"></td>
+												<td th:text="${#temporals.format(reserve.date, 'dd/MM/yyyy')}"></td>
 												<td th:text="${reserve.timeZone.time}"></td>
 											</tr>
 										</tbody>
