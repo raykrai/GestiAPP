@@ -67,7 +67,7 @@
                                                 <td><a href="#" data-toggle="modal" data-target="#delete" th:attr="data-target='#modalBorrar'+${category.id}">❌</a>
                                                     <div class="modal fade" id="delete" th:id="modalBorrar+${category.id}">
                                                         <div class="modal-dialog modal-dialog-centered">
-                                                          <div class="modal-content">
+                                                            <div class="modal-content">
                                                             <!-- Modal Header -->
                                                             <div class="modal-header">
                                                                 <h4 class="modal-title text-dark" th:text="#{askSure}">¿Estás seguro?</h4>
@@ -78,7 +78,6 @@
                                                                 <a th:href="@{/admin/categoryDel/{id}(id=${category.id})}"><button type="button"
                                                                     class="btn " th:text="#{delete}">Eliminar</button></a>
                                                             </div>
-                                                          </div>
                                                     	</div>
                                                     </div>
                                                 </td>

@@ -68,7 +68,23 @@
                                                 <td th:text="${room.school.name}"></td>
                                                 <td th:text="${room.roomCategory.categoryName}"></td>
                                                 <td><a href="" th:href="@{/admin/editRoom/{id}(id=${room.id})}">✏</a></td>
-                                                <td><a href="" th:href="@{/admin/delRoom/{id}(id=${room.id})}">❌</a></td>
+                                                <td><a href="#" data-toggle="modal" data-target="#delete" th:attr="data-target='#modalBorrar'+${room.id}">❌</a>
+                                                    <div class="modal fade" id="delete" th:id="modalBorrar+${room.id}">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title text-dark" th:text="#{askSure}">¿Estás seguro?</h4>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <!-- Modal footer -->
+                                                            <div class="modal-footer">
+                                                                <a th:href="@{/admin/delRoom/{id}(id=${room.id})}"><button type="button"
+                                                                    class="btn " th:text="#{delete}">Eliminar</button></a>
+                                                            </div>
+                                                    	</div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
