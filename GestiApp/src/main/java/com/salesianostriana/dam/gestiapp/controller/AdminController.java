@@ -146,6 +146,23 @@ public class AdminController {
 
 	/** CALENDARIO **/
 
+	private boolean isCurrentWeekDateSelect(Calendar yourSelectedDate) {
+		Date ddd = yourSelectedDate.getTime();
+		Calendar c = Calendar.getInstance();
+		c.setFirstDayOfWeek(Calendar.MONDAY);
+
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+
+		Date monday = c.getTime();
+		Date nextMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+		return ddd.after(monday) && ddd.before(nextMonday);
+	}
+	
 	@GetMapping("/admin/calendar")
 	public String getWeekCalendar(Model model) {
 		model.addAttribute("timeZoneList", timeZoneService.findAll());
@@ -290,20 +307,5 @@ public class AdminController {
 		return "redirect:/admin/reserves";
 	}
 
-	private boolean isCurrentWeekDateSelect(Calendar yourSelectedDate) {
-		Date ddd = yourSelectedDate.getTime();
-		Calendar c = Calendar.getInstance();
-		c.setFirstDayOfWeek(Calendar.MONDAY);
-
-		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-		c.set(Calendar.HOUR_OF_DAY, 0);
-		c.set(Calendar.MINUTE, 0);
-		c.set(Calendar.SECOND, 0);
-		c.set(Calendar.MILLISECOND, 0);
-
-		Date monday = c.getTime();
-		Date nextMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-		return ddd.after(monday) && ddd.before(nextMonday);
-	}
+	
 }
