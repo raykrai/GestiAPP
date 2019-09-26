@@ -1,5 +1,9 @@
 package com.salesianostriana.dam.gestiapp.controller;
 
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.salesianostriana.dam.gestiapp.formbeans.RoomFormBean;
 import com.salesianostriana.dam.gestiapp.formbeans.UserFormBean;
 import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.model.Pager;
@@ -28,6 +30,7 @@ import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
 import com.salesianostriana.dam.gestiapp.service.RoomService;
 import com.salesianostriana.dam.gestiapp.service.SchoolService;
+import com.salesianostriana.dam.gestiapp.service.TimeZoneService;
 
 /**
  * 
@@ -51,13 +54,15 @@ public class AdminController {
 
 	@Autowired
 	private SchoolService schoolService;
-	
+
 	@Autowired
 	private RoomCategoryService roomCategoryService;
-	
+
 	@Autowired
 	private ReserveService reserveService;
-	
+	@Autowired
+	private TimeZoneService timeZoneService;
+
 	/** VALIDACIÓN **/
 
 	@GetMapping("/admin/validate")
@@ -139,14 +144,29 @@ public class AdminController {
 
 	}
 
-/** CALENDARIO **/
+	/** CALENDARIO **/
 
 	@GetMapping("/admin/calendar")
-	public String calendar(Model model) {
+	public String getWeekCalendar(Model model) {
+		model.addAttribute("timeZoneList", timeZoneService.findAll());
+		
+		Calendar calendar = Calendar.getInstance();
+		
+		List<Reserve> thisWeekReserves = new ArrayList<Reserve>();
+
+		for (Reserve reserve : reserveService.findAll()) {
+			Date date = Date.from(reserve.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+			calendar.setTime(date);
+			if (this.isCurrentWeekDateSelect(calendar)) {
+				thisWeekReserves.add(reserve);
+			}
+
+		}
+		model.addAttribute("reserveList", thisWeekReserves);
 		return "calendar";
 	}
 
-/** LISTA DE AULAS **/
+	/** LISTA DE AULAS **/
 
 	@GetMapping("/admin/rooms")
 	public String showRooms(@RequestParam("pageSize") Optional<Integer> pageSize,
@@ -203,16 +223,17 @@ public class AdminController {
 		roomService.edit(room);
 		return "redirect:/admin/rooms";
 	}
-	
+
 	@PostMapping("/admin/roomSave")
 	public String addCerveza(@ModelAttribute("room") Room room, Model model) {
-		
+
 		roomService.save(room);
-		
+
 		return "redirect:/admin/rooms";
 	}
-/** LISTA DE CATEGORÍAS **/
-	
+
+	/** LISTA DE CATEGORÍAS **/
+
 	@GetMapping("/admin/roomCategories")
 	public String roomCategory(Model model) {
 
@@ -221,39 +242,40 @@ public class AdminController {
 		model.addAttribute("category", new RoomCategory());
 		return "roomCategories";
 	}
-	
+
 	@GetMapping("/admin/editCategory/{id}")
 	public String editCategory(@PathVariable("id") long id, Model model) {
 
 		RoomCategory editCategory = roomCategoryService.findById(id);
 		model.addAttribute("category", editCategory);
-		
+
 		return "roomCategoryEdit";
 	}
-	
+
 	@PostMapping("/admin/categorySubmit")
 	public String procesarCerveza(@ModelAttribute("category") RoomCategory c) {
 		roomCategoryService.edit(c);
 		return "redirect:/admin/roomCategories";
 	}
-	
+
 	@GetMapping("/admin/categoryDel/{id}")
 	public String roomCategoryDel(@PathVariable("id") long id) {
 		roomCategoryService.deleteById(id);
 		return "redirect:/admin/roomCategories";
 	}
-	
+
 	@PostMapping("/admin/categorySave")
 	public String addCerveza(@ModelAttribute("category") RoomCategory category, Model model) {
 		RoomCategory catego = new RoomCategory();
-		
+
 		catego.setCategoryName(category.getCategoryName());
-		
+
 		roomCategoryService.save(catego);
-		
+
 		return "redirect:/admin/roomCategories";
 	}
-/** RESERVAS **/
+
+	/** RESERVAS **/
 	@GetMapping("/admin/reserves")
 	public String showReserves(Model model) {
 
@@ -261,10 +283,27 @@ public class AdminController {
 		model.addAttribute("reserves", reserves);
 		return "reserveAdministration";
 	}
-	
+
 	@GetMapping("/admin/reserveDel/{id}")
 	public String reserveDel(@PathVariable("id") long id) {
 		reserveService.deleteById(id);
 		return "redirect:/admin/reserves";
+	}
+
+	private boolean isCurrentWeekDateSelect(Calendar yourSelectedDate) {
+		Date ddd = yourSelectedDate.getTime();
+		Calendar c = Calendar.getInstance();
+		c.setFirstDayOfWeek(Calendar.MONDAY);
+
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+
+		Date monday = c.getTime();
+		Date nextMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+		return ddd.after(monday) && ddd.before(nextMonday);
 	}
 }

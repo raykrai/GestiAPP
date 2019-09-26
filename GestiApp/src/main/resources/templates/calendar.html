@@ -51,21 +51,42 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <div class="row">
-                                            <div class="col-12"></div>
-                                            <div class="col-1" th:text="#{time}">Hora</div>
-                                            <div class="col-11">
-                                                <div class="row">
-                                                    <div class="col" th:text="#{monday}">Lunes</div>
-                                                    <div class="col" th:text="#{tueday}">Martes</div>
-                                                    <div class="col" th:text="#{wednesday}">Miercoles</div>
-                                                    <div class="col" th:text="#{thursday}">Jueves</div>
-                                                    <div class="col" th:text="#{friday}">Viernes</div>
-                                                    <div class="col" th:text="#{saturday}">Sabado</div>
-                                                    <div class="col" th:text="#{sunday}">Domingo</div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col" th:text="#{monday}">Lunes</th>
+                                                    <th scope="col" th:text="#{tuesday}">Martes</th>
+                                                    <th scope="col" th:text="#{wednesday}">Miercoles</th>
+                                                    <th scope="col" th:text="#{thursday}">Jueves</th>
+                                                    <th scope="col" th:text="#{friday}">Viernes</th>
+                                                    <th scope="col" th:text="#{saturday}">Sábado</th>
+                                                    <th scope="col" th:text="#{sunday}">Domingo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="timeZone : ${timeZoneList}">
+                                                    <th scope="row" th:text="${timeZone.name}"></th>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 1}"></span></span>
+                                                    </td>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 2}"></span></span>
+                                                    </td>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 3}"></span></span>
+                                                    </td>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 4}"></span></span>
+                                                    </td>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 5}"></span></span>
+                                                    </td>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 6}"></span></span>
+                                                    </td>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 7}"></span></span>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
                                     </div>
                                 </div>
                             </div>
