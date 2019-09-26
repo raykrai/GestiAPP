@@ -52,24 +52,26 @@
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                                     <label for="fecha"> Fecha:</label> 
-                                                    <input type="date" class="form-control"  th:field="*{date.date}"/>
+                                                    <input type="date" class="form-control"  th:field="*{date}"/>
                                                 </div>
                                                 <div class="col-sm-6"> </div>
                                             </div>
                                             <div class="input-group mt-3 mb-3">
-                                                <select name="tramos" th:field="*{date.timeZone}">
-                                                    <option th:each="tramo : ${tramos}" th:value="${tramo.id}"
-                                                        th:text="${tramo.name}"></option>
+                                                <select name="tramos" th:field="*{timeZone}">
+                                                    <option th:each="zone : ${timeZoneList}" th:value="${zone.id}"
+                                                        th:text="${zone.name}"></option>
                                                 </select>
                                             </div>
                                             <div class="input-group mt-3 mb-3">
                                                 <select name="eventos" th:field="*{roomCategory}">
-                                                    <option th:each="category : ${categorys}" th:value="${category.id}"
+                                                    <option th:each="category : ${categories}" th:value="${category.id}"
                                                         th:text="${category.categoryName}"></option>
                                                 </select>
                                             </div>
                                             </br>
-                                            <input class="btn btn-primary btn-danger btn-user btn-block" type="submit" name="enviar" value="Confirmar" />
+                                            <div class="input-group mt-3 mb-3">
+                                            <input class="btn btn-primary btn-danger btn-user btn-block" type="submit" name="enviar" value="Buscar" />
+                                            </div>
                                         </form>
                                 </div>
                             </div>
