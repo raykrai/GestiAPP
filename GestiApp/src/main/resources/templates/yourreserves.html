@@ -41,7 +41,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-						<h1 class="h3 mb-0 text-gray-800" th:text="#{teachersToValidate}">Profesores a validar</h1>
+						<h1 class="h3 mb-0 text-gray-800" th:text="#{reservationList}">Listado de mis reservas</h1>
 					</div>
 
 					<!-- Content Row -->
@@ -66,7 +66,6 @@
 												<th scope="col" th:text="#{teacher}">PROFESOR</th>
 												<th scope="col" th:text="#{date}">FECHA</th>
 												<th scope="col" th:text="#{time}">HORA</th>
-												<th scope="col" th:text="#{school}">COLEGIO</th>
 												
 											</tr>
 										</thead>
@@ -77,7 +76,6 @@
 												<td th:text="${reserve.reserveUser.name}"></td>
 												<td th:text="${reserve.date}"></td>
 												<td th:text="${reserve.timeZone.time}"></td>
-												<td th:text="${reserve.school.name}"></td>
 											</tr>
 										</tbody>
 									</table>
