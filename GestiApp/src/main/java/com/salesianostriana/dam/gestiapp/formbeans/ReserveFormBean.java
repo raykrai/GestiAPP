@@ -2,6 +2,8 @@ package com.salesianostriana.dam.gestiapp.formbeans;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.RoomCategory;
@@ -12,6 +14,7 @@ public class ReserveFormBean {
 
 	private Room reservedRoom;
 	private AppUser reserveUser;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 	private TimeZone timeZone;
 	private RoomCategory roomCategory;

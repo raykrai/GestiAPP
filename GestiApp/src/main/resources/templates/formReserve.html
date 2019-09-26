@@ -48,7 +48,7 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                        <form class="user col-12" th:action="@{/formReserve/room}" th:object="${reserveFormBean}" method="post">
+                                        <form class="user col-12" th:action="@{/formReserve/submit}" th:object="${reserveFormBean}" method="post">
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                                     <label for="fecha"> Fecha:</label> 
@@ -63,7 +63,7 @@
                                                 </select>
                                             </div>
                                             <div class="input-group mt-3 mb-3">
-                                                <select name="eventos" th:field="*{roomCategory}">
+                                                <select name="category" th:field="*{roomCategory}">
                                                     <option th:each="category : ${categories}" th:value="${category.id}"
                                                         th:text="${category.categoryName}"></option>
                                                 </select>
