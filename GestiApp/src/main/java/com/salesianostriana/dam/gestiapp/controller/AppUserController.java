@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.gestiapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.dam.gestiapp.formbeans.UserFormBean;
 import com.salesianostriana.dam.gestiapp.model.AppUser;
+import com.salesianostriana.dam.gestiapp.model.Reserve;
 import com.salesianostriana.dam.gestiapp.service.AppUserService;
+import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.SchoolService;
 
 @Controller
@@ -21,6 +25,9 @@ public class AppUserController {
 
 	@Autowired
 	private AppUserService appUserService;
+	
+	@Autowired
+	private ReserveService reserveService;
 	
 	@Autowired
 	private SchoolService schoolService;
@@ -102,6 +109,20 @@ public class AppUserController {
 		appUserService.edit(puser);
 		
 		return plantilla;
+	}
+	
+	//Mostrar las reservas del profesor
+	@GetMapping("/myreserves")
+	public String showFormReserves(Model model) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		User user = (User) auth.getPrincipal();
+		List <Reserve> reserve = reserveService.findAllByReserveUserId(appUserService.searchByEmail(user.getUsername()).getId());
+
+		model.addAttribute("myReserve", reserve);
+
+		return "yourreserves";
 	}
 
 }
