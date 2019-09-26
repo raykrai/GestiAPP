@@ -68,21 +68,21 @@
                                             <tbody>
                                                 <tr th:each="timeZone : ${timeZoneList}">
                                                     <th scope="row" th:text="${timeZone.name}"></th>
-                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 1}"></span></span>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 1}"></span></span>
                                                     </td>
-                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 2}"></span></span>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 2}"></span></span>
                                                     </td>
-                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 3}"></span></span>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 3}"></span></span>
                                                     </td>
-                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 4}"></span></span>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 4}"></span></span>
                                                     </td>
-                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 5}"></span></span>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 5}">a</span></span>
                                                     </td>
-                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 6}"></span></span>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 6}"></span></span>
                                                     </td>
-                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.timeZone.getDayOfWeek() == 7}"></span></span>
+                                                    <td><span th:each="reserve : ${reserveList}"><span th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 7}"></span></span>
                                                     </td>
-
+                                                    
                                                 </tr>
                                             </tbody>
                                         </table>

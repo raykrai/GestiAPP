@@ -47,7 +47,7 @@ public class Reserve {
 	@NotNull
 	@ManyToOne
 	private TimeZone timeZone;
-
+	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@ManyToOne
