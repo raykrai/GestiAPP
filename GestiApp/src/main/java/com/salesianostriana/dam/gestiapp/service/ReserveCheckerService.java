@@ -43,7 +43,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		int dayOfWeek = localDate.getDayOfWeek().getValue();
 
 		// Si el dia es sabado o domingo
-		if (dayOfWeek == 6 && dayOfWeek == 7) {
+		if (dayOfWeek == 6 || dayOfWeek == 7) {
 			// Si el fin de semana esta activo
 			if (this.findAll().get(0).getWeekendOn() == true) {
 				return true;
@@ -75,22 +75,26 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 
 		boolean result = false;
 
-		for (Reserve reserve : reserveService.findAll()) {
-			// Comprueba fecha
-			if (reserve.getDate() == ldate) {
-				// Comprueba hora
-				if (!reserve.getTimeZone().getTime().equals(timeZone.getTime())) {
-					result = true;
-				} else {
-					if (room.getId() == reserve.getReservedRoom().getId()) {
-						result = false;
-					} else {
+		if (reserveService.findAll().isEmpty()) {
+			result = true;
+		} else {
+			for (Reserve reserve : reserveService.findAll()) {
+				// Comprueba fecha
+				if (reserve.getDate() == ldate) {
+					// Comprueba hora
+					if (!reserve.getTimeZone().getTime().equals(timeZone.getTime())) {
 						result = true;
+					} else {
+						if (room.getId() == reserve.getReservedRoom().getId()) {
+							result = false;
+						} else {
+							result = true;
+						}
 					}
-				}
 
-			} else {
-				result = true;
+				} else {
+					result = true;
+				}
 			}
 		}
 		return result;
@@ -106,9 +110,14 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		LocalDate actualDate = LocalDate.now();
 		LocalTime actualTime = LocalTime.now();
 
+		System.out.println(localDate + timeZone.getName() + room.getName());
+		System.out.println(actualDate);
+		System.out.println(actualTime);
+
 		// Si el dia que le pasamos no es anterior al de hoy
 		if (!localDate.isBefore(actualDate)) {
 			// Si estamos en el mismo dia, que compruebe la hora
+			System.out.println(localDate.isEqual(actualDate));
 			if (localDate.isEqual(actualDate)) {
 				// Si la hora de la reserva no es anterior a la actual, entonces sigue el flujo
 				if (!timeZone.getTime().isBefore(actualTime)) {

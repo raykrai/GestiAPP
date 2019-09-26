@@ -1,7 +1,5 @@
 package com.salesianostriana.dam.gestiapp.controller;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,6 @@ import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
 import com.salesianostriana.dam.gestiapp.service.RoomService;
 import com.salesianostriana.dam.gestiapp.service.TimeZoneService;
 
-
 @Controller
 public class ReserveController {
 
@@ -47,9 +44,9 @@ public class ReserveController {
 
 	@GetMapping("/formReserve")
 	public String showFormReserve(Model model) {
-		List<TimeZone> timeZoneList= timeZoneService.findAll();
+		List<TimeZone> timeZoneList = timeZoneService.findAll();
 		List<RoomCategory> categories = roomCategoryService.findAll();
-		
+
 		model.addAttribute("timeZoneList", timeZoneList);
 		model.addAttribute("categories", categories);
 		model.addAttribute("reserveFormBean", new ReserveFormBean());
@@ -62,38 +59,37 @@ public class ReserveController {
 	// QUE ESTÁ PUESTA ES DE EJEMPLO - 22/09/2019.
 
 	@PostMapping("/formReserve/submit")
-	public String submitFormReserve(@ModelAttribute("reserveFormBean") ReserveFormBean reserveFormBean,
-			Model model) {
-		
-        
-        model.addAttribute("rooms",reserveService.findByReserve(reserveFormBean.getDate(), 
-        		reserveFormBean.getTimeZone().getTime(),reserveFormBean.getRoomCategory()));
+	public String submitFormReserve(@ModelAttribute("reserveFormBean") ReserveFormBean reserveFormBean, Model model) {
+
+		model.addAttribute("rooms", reserveService.findByReserve(reserveFormBean.getDate(),
+				reserveFormBean.getTimeZone().getTime(), reserveFormBean.getRoomCategory()));
 		model.addAttribute("reserveFormBean", reserveFormBean);
-		
-		if(reserveService.findByReserve(reserveFormBean.getDate(), 
-        		reserveFormBean.getTimeZone().getTime(),reserveFormBean.getRoomCategory()).isEmpty()) {
+
+		if (reserveService.findByReserve(reserveFormBean.getDate(), reserveFormBean.getTimeZone().getTime(),
+				reserveFormBean.getRoomCategory()).isEmpty()) {
 			return "reserveComplet";
-		}else {
+		} else {
 			return "reserve";
 		}
-		
+
 	}
-	
+
 	@PostMapping("/formReserve/save")
 	public String submitFormReserve2(@ModelAttribute("reserveFormBean") ReserveFormBean reserveFormBean) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) auth.getPrincipal();
-        
+		User user = (User) auth.getPrincipal();
+
 		Reserve r = new Reserve();
 
 		r.setReservedRoom(reserveFormBean.getReservedRoom());
 		r.setReserveUser(appUserService.findById(appUserService.searchByEmail(user.getUsername()).getId()));
 		r.setDate(reserveFormBean.getDate());
 		r.setTimeZone(reserveFormBean.getTimeZone());
-		
-		reserveService.save(r);
 
+		if (reserveCheckerService.checkReserve(r.getDate(), r.getTimeZone(), r.getReservedRoom())) {
+			reserveService.save(r);
+		}
 		return "redirect:/";
 	}
 
