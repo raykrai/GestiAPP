@@ -66,6 +66,7 @@
 												<th scope="col" th:text="#{teacher}">PROFESOR</th>
 												<th scope="col" th:text="#{date}">FECHA</th>
 												<th scope="col" th:text="#{time}">HORA</th>
+												<th scope="col">❌</th>
 												
 											</tr>
 										</thead>
@@ -76,6 +77,24 @@
 												<td th:text="${reserve.reserveUser.name}"></td>
 												<td th:text="${#temporals.format(reserve.date, 'dd/MM/yyyy')}"></td>
 												<td th:text="${reserve.timeZone.time}"></td>
+												<td><a href="#" data-toggle="modal" data-target="#delete" th:attr="data-target='#modalBorrar'+${reserve.id}">❌</a>
+                                                    <div class="modal fade" id="delete" th:id="modalBorrar+${reserve.id}">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <!-- Modal Header -->
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title text-dark" th:text="#{askSure}">¿Estás seguro?</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <!-- Modal footer -->
+                                                                <div class="modal-footer">
+                                                                    <a th:href="@{/myreserves/{id}(id=${reserve.id})}"><button type="button"
+                                                                        class="btn " th:text="#{delete}">Eliminar</button></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
 											</tr>
 										</tbody>
 									</table>
