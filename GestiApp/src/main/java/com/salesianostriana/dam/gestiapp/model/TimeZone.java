@@ -31,7 +31,6 @@ import lombok.Setter;
 public class TimeZone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Setter(AccessLevel.NONE)
 	private long id;
 
 	@NotNull
