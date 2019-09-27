@@ -46,7 +46,9 @@ public class Room {
 	@ManyToOne
 	private RoomCategory roomCategory;
 	
-	@OneToMany(mappedBy="reservedRoom", cascade = CascadeType.ALL, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@OneToMany(mappedBy="reservedRoom", cascade = CascadeType.ALL)
 	private List<Reserve> listaReservas = new ArrayList <>();
 
 	/**

@@ -48,7 +48,9 @@ public class AppUser {
 	@ManyToOne
 	private School school;
 	
-	@OneToMany(mappedBy="reserveUser", cascade = CascadeType.ALL, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@OneToMany(mappedBy="reserveUser", cascade = CascadeType.ALL)
 	private List<Reserve> reserveList;
 	
 	/**

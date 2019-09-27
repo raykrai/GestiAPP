@@ -44,26 +44,28 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-12">
+                        <div class="col-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
                                 <div class="card-body">
                                         <form class="user col-12" th:action="@{/formReserve/submit}" th:object="${reserveFormBean}" method="post">
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="fecha"> Fecha:</label> 
+                                                    <label for="fecha" th:text="#{date}"> Fecha:</label> 
                                                     <input type="date" class="form-control"  th:field="*{date}"/>
                                                 </div>
                                                 <div class="col-sm-6"> </div>
                                             </div>
-                                            <div class="input-group mt-3 mb-3">
-                                                <select name="tramos" th:field="*{timeZone}">
+                                            <div class="form-group mt-3 mb-3">
+                                            	<label for="fecha" th:text="#{time}"> Hora:</label><br> 
+                                                <select class="form-control" name="tramos" th:field="*{timeZone}">
                                                     <option th:each="zone : ${timeZoneList}" th:value="${zone.id}"
                                                         th:text="${zone.name}"></option>
                                                 </select>
                                             </div>
-                                            <div class="input-group mt-3 mb-3">
-                                                <select name="category" th:field="*{roomCategory}">
+                                            <div class="form-group mt-3 mb-3">
+                                            	<label for="fecha" th:text="#{specialization}"> Especialización:</label>
+                                                <select name="category" class="form-control" th:field="*{roomCategory}">
                                                     <option th:each="category : ${categories}" th:value="${category.id}"
                                                         th:text="${category.categoryName}"></option>
                                                 </select>

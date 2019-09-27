@@ -101,8 +101,11 @@ public class AppUserController {
 		
 		String plantilla;
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		User user = (User) auth.getPrincipal();
 		
-		if (!puser.getUserEmail().equals(appUserService.findById(puser.getId()).getUserEmail())) {
+		if (!puser.getUserEmail().equals(user.getUsername())) {
 			plantilla="redirect:/logout";
 		} else {
 			plantilla="redirect:/profile";
@@ -134,6 +137,13 @@ public class AppUserController {
 		
 		return "redirect:/myreserves";
 		
+	}
+	
+	@GetMapping("/allreserves")
+	public String showAllReserves(Model model) {
+		
+		model.addAttribute("reserves", reserveService.findAll());
+		return "allreserves";
 	}
 
 }

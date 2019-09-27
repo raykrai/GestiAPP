@@ -35,7 +35,7 @@ public class RoomCategory {
 	private String categoryName;
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomCategory", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roomCategory")
 	private List<Room> roomList = new ArrayList <>();
 	
 	/**

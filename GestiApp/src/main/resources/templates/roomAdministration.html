@@ -99,47 +99,38 @@
                                     </div>
                                     
                                     <!-- Paginación -->
-                                    
-						    		<div class="row">
-									<div class="form-group col-md-1" id="seleccionador">
-										<select class="form-control pagination" id="pageSizeSelectrooms">
-											<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-												th:value="${pageSize}"
-												th:selected="${pageSize} == ${selectedPageSize}"></option>
-										</select>
-									</div>
 									<div th:if="${rooms.totalPages != 1}"
 											class="form-group col-md-11 pagination-centered">
 											<ul class="pagination">
 												<!-- Si el número de página es cero, deshabilitamos el enlace -->
 												<li th:class="${rooms.number == 0} ? 'disabled page-item' : page-item">
 													<!-- Este enlace nos debe llevar a la primera página, con el tamaño de página actual -->
-													<a class="page-link"
+													<a class="page-link text-danger"
 													th:href="@{/admin/rooms/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
 												</li>
 												<!-- Si el número de página es cero, deshabilitamos el enlace -->
 												<li th:class="${rooms.number == 0} ? 'disabled page-item' : page-item">
 													<!-- Este enlace nos debe llevar a la página anterior, con el tamaño de página actual -->						
-													<a class="page-link" th:href="@{/admin/rooms/(pageSize=${selectedPageSize}, page=${rooms.number})}">&larr;</a>
+													<a class="page-link text-danger" th:href="@{/admin/rooms/(pageSize=${selectedPageSize}, page=${rooms.number})}">&larr;</a>
 												</li>
 												<!-- Este bucle genera los enlaces para las demás páginas -->
 												<li
 													th:class="${rooms.number == (page - 1)} ? 'active pointer-disabled page-item' : page-item"
 													th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-													<a class="page-link"
+													<a class="page-link text-danger"
 													th:href="@{/admin/rooms/(pageSize=${selectedPageSize}, page=${page})}"
 													th:text="${page}"></a>
 												</li>
 												<!-- Enlace a la siguiente página; si estamos en la última queda desabilitado  -->
 												<li
 													th:class="${rooms.number + 1 == rooms.totalPages} ? 'disabled page-item' : page-item">
-													<a class="page-link"
+													<a class="page-link text-danger"
 													th:href="@{/admin/rooms/(pageSize=${selectedPageSize}, page=${rooms.number + 2})}">&rarr;</a>
 												</li>
 												<!-- Enlace a la última página; si estamos en la última queda desabilitado  -->				
 												<li
 													th:class="${rooms.number + 1 == rooms.totalPages} ? 'disabled page-item' : page-item">
-													<a class="page-link"
+													<a class="page-link text-danger"
 													th:href="@{/admin/rooms/(pageSize=${selectedPageSize}, page=${rooms.totalPages})}">&raquo;</a>
 												</li>
 											</ul>
@@ -198,7 +189,6 @@
                         
                     </div>
                 </div>
-            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
@@ -210,7 +200,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- BS JavaScript -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

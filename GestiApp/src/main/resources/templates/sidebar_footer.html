@@ -41,7 +41,7 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" th:href="@{/}">
-          <span>Inicio</span></a>
+          <span th:text="#{start}">Inicio</span></a>
       </li>
 
       <!-- Divider -->
@@ -64,15 +64,16 @@
       <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span th:text="#{showProfile}">Opciones</span>
+          <span>Dashboard</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="userstovalidate.html" th:href="@{/admin/validate}" th:text="#{validate}">Validación de profesores</a>
-            <a class="collapse-item" href="utilities-color.html" th:href="@{/admin/users}" th:text="#{admT}">Administrar profesores</a>
-            <a class="collapse-item" href="utilities-border.html" th:href="@{/admin/reserves}" th:text="#{admReserve}">Administrar reservas</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/validate}" th:text="#{validate}">Validación de profesores</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/users}" th:text="#{admT}">Administrar profesores</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/reserves}" th:text="#{admReserve}">Administrar reservas</a>
             <a class="collapse-item" href="roomAdministration.html" th:href="@{/admin/rooms}" th:text="#{admRooms}">Administrar aulas</a>
             <a class="collapse-item" href="roomCategorys.html" th:href="@{/admin/roomCategories}" th:text="#{admC}">Administrar categorías</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/timeZone}" th:text="#{admZ}">Administrar horas</a>
           </div>
         </div>
       </li>
@@ -85,27 +86,20 @@
         RESERVAS
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-flag"></i>
-          <span th:text="#{language}">Idioma</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="https://icons8.com/icon/18099/spain-flag" th:href="@{/?lang=es_ES}">Español</a>
-            <a class="collapse-item" href="index.html" th:href="@{/?lang=eng_ENG}">Inglés</a>
-          </div>
-        </div>
-      </li>
-
       <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="formReserve.html" th:href="@{/formReserve}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span th:text="#{reserves}">Crear reservas</span></a>
       </li>
-
+	
+	<!-- Nav Item - Tables -->
+      <li class="nav-item" sec:authorize="!hasRole('ROLE_ADMIN')">
+        <a class="nav-link" href="yourreserves.html" th:href="@{/allreserves}">
+          <i class="fas fa-fw fa-table"></i>
+          <span th:text="#{allreserves}">Todas las reservas</span></a>
+      </li>
+      
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="yourreserves.html" th:href="@{/myreserves}">
@@ -113,29 +107,26 @@
           <span th:text="#{youreservers}">Tus reservas</span></a>
       </li>
       
-    <!-- Divider -->
+      <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
-      <a th:href="@{/logout}" class="ml-3"><i class="fas fa-sign-out-alt"></i></a>
-    </ul>
-    <!-- End of Sidebar -->
       
-            <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIdioma" aria-expanded="true" aria-controls="collapseIdioma">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Idioma</span>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item ml-3 float-left">
+        <a href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-flag"></i>
+          <span th:text="#{language}">Idioma</span>
         </a>
-        <div id="collapseIdioma" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        
+        <!-- Log out -->
+        <a th:href="@{/logout}"><i class="fas fa-sign-out-alt float-right"></i></a>
+        
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="index.html" th:href="@{/?lang=es_ES}">Español</a>
+            <a class="collapse-item" href="https://icons8.com/icon/18099/spain-flag" th:href="@{/?lang=es_ES}">Español</a>
             <a class="collapse-item" href="index.html" th:href="@{/?lang=eng_ENG}">Inglés</a>
           </div>
         </div>
       </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-      <a th:href="@{/logout}" class="ml-3"><i class="fas fa-sign-out-alt"></i></a>
     </ul>
     <!-- End of Sidebar -->
 

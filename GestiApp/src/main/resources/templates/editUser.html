@@ -20,7 +20,6 @@
 
 </head>
 
-<body>
 
     <div id="wrapper">
         <ul th:replace="sidebar_footer.html :: sidebar"></ul>
@@ -43,18 +42,25 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-12">
+                        <div class="col-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <form class="user col-12" th:action="@{/admin/editUser/submit}" th:object="${userFormBean}" method="post">
-                                        <input th:if="${userFormBean.id != 0}" type="hidden" name="id" th:field="*{id}" />
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="text" class="form-control form-control-user" name="name" id="name" th:field="*{name}" placeholder="Nombre" required>
+                                        <form class="user col-12" th:action="@{/admin/editUser/submit}" th:object="${userFormBean}" method="post">
+                                            <input th:if="${userFormBean.id != 0}" type="hidden" name="id" th:field="*{id}" />
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="text" class="form-control form-control-user" name="name" id="name" th:field="*{name}"
+                                                        placeholder="Nombre" required>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-user" name="surname" id="surname" th:field="*{surname}"
+                                                        placeholder="Apellidos" required>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control form-control-user" name="surname" id="surname" th:field="*{surname}" placeholder="Apellidos" required>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control form-control-user" name="userEmail" id="userEmail"
+                                                    th:field="*{userEmail}" placeholder="Correo electrónico" required>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -63,42 +69,32 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <select id="school" class="custom-select" th:field="*{school}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" name="userEmail" id="userEmail" th:field="*{userEmail}" placeholder="Correo electrónico" required>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input type="password" class="form-control form-control-user" name="password" id="password" th:field="*{password}" placeholder="Contraseña">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <select id="school" class="custom-select" th:field="*{school}" required>
                                                         <option value="" selected th:text="#{cSchool}">Elige tu centro</option>
                                                         <option th:each="school : ${listSchool}" th:value="${school.id}" th:text="${school.name}">None
                                                         </option>
                                                     </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="col-md-4 control-label" for="radios">¿Admin?</label>
-                                            <div class="col-md-6">
-                                                <div class="form-row">
-                                                    <div class="radio col-md-6">
-                                                        <label for="radios-0">
-                                                                <input type="radio" name="radios" id="radios-0" value="true" th:field="*{admin}" th:text="#{yes}">
-                                                            </label>
-                                                    </div>
-                                                    <div class="radio col-md-6">
-                                                        <label for="radios-1">
-                                                                <input type="radio" name="radios" id="radios-1" value="false" th:field="*{admin}" th:text="#{not}">
-                                                            </label>
-                                                    </div>
                                                 </div>
                                             </div>
-                                            <br>
-                                        </div>
-                                        <input class="btn btn-primary btn-danger btn-user btn-block" type="submit" name="enviar" value="Confirmar" />
-                                    </form>
+                                            <div class="form-group col-md-6">
+                                                <label class="col-md-4 control-label" for="radios">¿Admin?</label>
+                                                <div class="col-md-6">
+                                                    <div class="form-row">
+                                                        <div class="radio col-md-6">
+                                                            <label for="radios-0">
+                                                                <input type="radio" name="radios" id="radios-0" value="true" th:field="*{admin}" th:text="#{yes}">
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio col-md-6">
+                                                            <label for="radios-1">
+                                                                <input type="radio" name="radios" id="radios-1" value="false" th:field="*{admin}" th:text="#{not}">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <input class="btn btn-primary btn-danger btn-user btn-block" type="submit" name="enviar" value="Confirmar" />
+                                        </form>
                                 </div>
                             </div>
                         </div>
@@ -129,6 +125,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-</body>
 
 </html>

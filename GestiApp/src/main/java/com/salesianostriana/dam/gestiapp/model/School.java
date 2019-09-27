@@ -45,15 +45,15 @@ public class School {
 	private String schoolCode;
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
 	private List<Room> roomList = new ArrayList<>();
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
 	private List<AppUser> userList = new ArrayList<>();
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
 	private List<Reserve> reserveList = new ArrayList<>();
 
 	/**

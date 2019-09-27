@@ -34,7 +34,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800" th:text="#{classroomReserves}">Aula reservadas</h1>
+
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{tReserves}">Reservas de profesores</h1>
+
                     </div>
 
                     <!-- Content Row -->
@@ -46,13 +48,37 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold" th:text="#{category}"></h6>
+
+                                    <h6 class="m-0 font-weight-bold" th:text="#{reservationList}">Lista de reservas</h6>
+
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    
-                                    <p th:text="#{messReserveDayError}">No se puede hacer la reserva para este día.</p>
-                                    
+                                    <table class="table" id="tabla">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col" th:text="#{date}">FECHA Y HORA</th>
+                                                <th scope="col" th:text="#{class}">AULA</th>
+                                                <th scope="col" th:text="#{category}">CATEGORÍA</th>
+                                                <th scope="col" th:text="#{teacher}">PROFESOR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="reserve : ${reserves}">
+                                                <td th:text="${reserve.id}"></td>
+                                                <td th:text="${#temporals.format(reserve.date, 'dd/MM/yyyy')}+' '+${reserve.timeZone.name}"></td>
+                                                <td th:text="${reserve.reservedRoom.name}"></td>
+                                                <td th:text="${reserve.reservedRoom.roomCategory.categoryName}"></td>
+                                                <td>
+                                                    <span th:if="${reserve.reserveUser.name != null}">
+                                                        <span th:text="${reserve.reserveUser.name}"></span>
+                                                    </span>
+                                                        <span th:unless="${reserve.reserveUser.name != null}">?</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

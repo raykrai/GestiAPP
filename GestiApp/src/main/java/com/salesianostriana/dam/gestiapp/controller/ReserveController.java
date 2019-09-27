@@ -76,7 +76,9 @@ public class ReserveController {
 
 	@PostMapping("/formReserve/save")
 	public String submitFormReserve2(@ModelAttribute("reserveFormBean") ReserveFormBean reserveFormBean) {
-
+		
+		String plantilla = "redirect:/myreserves";
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) auth.getPrincipal();
 
@@ -89,8 +91,10 @@ public class ReserveController {
 
 		if (reserveCheckerService.checkReserve(r.getDate(), r.getTimeZone(), r.getReservedRoom())) {
 			reserveService.save(r);
+		} else {
+			plantilla = "reservedDay";
 		}
-		return "redirect:/";
+		return plantilla;
 	}
 
 }

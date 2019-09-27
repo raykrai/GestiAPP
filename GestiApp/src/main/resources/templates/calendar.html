@@ -42,70 +42,61 @@
 
                     <!-- Content Row -->
 
-                    <div class="row">
+                    <div class="row h-75">
 
                         <!-- Area Chart -->
                         <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold" th:text="#{news}">Novedades semana actual</h6>
-                                </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-
-                                        <table class="table table-striped">
+                                        <table class="table-striped col-12">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col" th:text="#{monday}">Lunes</th>
-                                                    <th scope="col" th:text="#{tuesday}">Martes</th>
-                                                    <th scope="col" th:text="#{wednesday}">Miercoles</th>
-                                                    <th scope="col" th:text="#{thursday}">Jueves</th>
-                                                    <th scope="col" th:text="#{friday}">Viernes</th>
-                                                    <th scope="col" th:text="#{saturday}">Sábado</th>
-                                                    <th scope="col" th:text="#{sunday}">Domingo</th>
+                                                    <th scope="col" class="text-center">#</th>
+                                                    <th scope="col" class="text-center" th:text="#{monday}">Lunes</th>
+                                                    <th scope="col" class="text-center" th:text="#{tuesday}">Martes</th>
+                                                    <th scope="col" class="text-center" th:text="#{wednesday}">Miercoles</th>
+                                                    <th scope="col" class="text-center" th:text="#{thursday}">Jueves</th>
+                                                    <th scope="col" class="text-center" th:text="#{friday}">Viernes</th>
+                                                    <th scope="col" class="text-center" th:text="#{saturday}">Sábado</th>
+                                                    <th scope="col" class="text-center" th:text="#{sunday}">Domingo</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr th:each="timeZone : ${timeZoneList}">
-                                                    <th scope="row" th:text="${timeZone.name}"></th>
+                                                    <th scope="row" class="text-center"th:text="${timeZone.name}"></th>
                                                     <td><span th:each="reserve : ${reserveList}"><span
                                                                 th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 1}"
-                                                                th:text="${reserve.reservedRoom.name + ' - ' + reserve.reservedRoom.roomCategory.categoryName}"></span></span>
+                                                                class="text-center d-block" th:text="${reserve.reservedRoom.name}"></span></span>
                                                     </td>
                                                     <td><span th:each="reserve : ${reserveList}"><span
                                                                 th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 2}"
-                                                                th:text="${reserve.reservedRoom.name + ' - ' + reserve.reservedRoom.roomCategory.categoryName}"></span></span>
+                                                                class="text-center d-block" th:text="${reserve.reservedRoom.name}"></span></span>
                                                     </td>
                                                     <td><span th:each="reserve : ${reserveList}"><span
                                                                 th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 3}"
-                                                                th:text="${reserve.reservedRoom.name + ' - ' + reserve.reservedRoom.roomCategory.categoryName}"></span></span>
+                                                                class="text-center d-block" th:text="${reserve.reservedRoom.name}"></span></span>
                                                     </td>
                                                     <td><span th:each="reserve : ${reserveList}"><span
                                                                 th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 4}"
-                                                                th:text="${reserve.reservedRoom.name + ' - ' + reserve.reservedRoom.roomCategory.categoryName}"></span></span>
+                                                                class="text-center d-block" th:text="${reserve.reservedRoom.name}"></span></span>
                                                     </td>
                                                     <td><span th:each="reserve : ${reserveList}"><span
                                                                 th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 5}"
-                                                                th:text="${reserve.reservedRoom.name + ' - ' + reserve.reservedRoom.roomCategory.categoryName}"></span></span>
+                                                                class="text-center d-block" th:text="${reserve.reservedRoom.name}"></span></span>
                                                     </td>
                                                     <td><span th:each="reserve : ${reserveList}"><span
                                                                 th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 6}"
-                                                                th:text="${reserve.reservedRoom.name + ' - ' + reserve.reservedRoom.roomCategory.categoryName}"></span></span>
+                                                                class="text-center d-block" th:text="${reserve.reservedRoom.name}"></span></span>
                                                     </td>
                                                     <td><span th:each="reserve : ${reserveList}"><span
                                                                 th:if="${reserve.timeZone.id == timeZone.id && reserve.date.dayOfWeek.value == 7}"
-                                                                th:text="${reserve.reservedRoom.name + ' - ' + reserve.reservedRoom.roomCategory.categoryName}"></span></span>
+                                                                class="text-center d-block" th:text="${reserve.reservedRoom.name}"></span></span>
                                                     </td>
 
                                                 </tr>
                                             </tbody>
                                         </table>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>

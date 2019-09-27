@@ -18,7 +18,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author jmbargueno
@@ -39,7 +41,10 @@ public class TimeZone {
 	@NotNull
 	@DateTimeFormat(iso = ISO.TIME)
 	private LocalTime time;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "timeZone", orphanRemoval = true)
+	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "timeZone")
 	private List <Reserve> reserveList;
 
 	/**

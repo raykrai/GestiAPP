@@ -44,7 +44,7 @@ public class AdminController {
 
 	private static final int BUTTONS_TO_SHOW = 5;
 	private static final int INITIAL_PAGE = 0;
-	private static final int INITIAL_PAGE_SIZE = 5;
+	private static final int INITIAL_PAGE_SIZE = 10;
 	private static final int[] PAGE_SIZES = { 5, 10, 20, 50 };
 
 	@Autowired
@@ -149,44 +149,7 @@ public class AdminController {
 
 	}
 
-	/** CALENDARIO **/
-
-	private boolean isCurrentWeekDateSelect(Calendar yourSelectedDate) {
-		Date ddd = yourSelectedDate.getTime();
-		Calendar c = Calendar.getInstance();
-		c.setFirstDayOfWeek(Calendar.MONDAY);
-
-		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-		c.set(Calendar.HOUR_OF_DAY, 0);
-		c.set(Calendar.MINUTE, 0);
-		c.set(Calendar.SECOND, 0);
-		c.set(Calendar.MILLISECOND, 0);
-
-		Date monday = c.getTime();
-		Date nextMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-		return ddd.after(monday) && ddd.before(nextMonday);
-	}
 	
-	@GetMapping("/admin/calendar")
-	public String getWeekCalendar(Model model) {
-		model.addAttribute("timeZoneList", timeZoneService.findAll());
-		
-		Calendar calendar = Calendar.getInstance();
-		
-		List<Reserve> thisWeekReserves = new ArrayList<Reserve>();
-
-		for (Reserve reserve : reserveService.findAll()) {
-			Date date = Date.from(reserve.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
-			calendar.setTime(date);
-			if (this.isCurrentWeekDateSelect(calendar)) {
-				thisWeekReserves.add(reserve);
-			}
-
-		}
-		model.addAttribute("reserveList", thisWeekReserves);
-		return "calendar";
-	}
 
 	/** LISTA DE AULAS **/
 
@@ -332,7 +295,7 @@ public class AdminController {
 
 		timeZoneService.save(timeZo);
 
-		return "redirect:/admin/roomCategories";
+		return "redirect:/admin/timeZone";
 	}
 	
 	@GetMapping("/admin/timeZoneEdit/{id}")

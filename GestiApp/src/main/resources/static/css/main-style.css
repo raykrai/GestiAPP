@@ -4632,9 +4632,9 @@ input[type="button"].btn-block {
 
 .page-item.active .page-link {
   z-index: 1;
-  color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  color: white !important;
+  background-color: #e74a3b;
+  border-color: #e74a3b;
 }
 
 .page-item.disabled .page-link {
@@ -10570,6 +10570,13 @@ a:focus {
   width: 100%;
 }
 
+.table-striped th, .table-striped td {
+	width: 12.5% !important;
+}
+
+.table-striped {
+	min-height: 65vh;
+}
 @media (min-width: 768px) {
   .chart-bar {
     height: 20rem;
@@ -10635,6 +10642,7 @@ a, a:visited {
 }
 .fa-sign-out-alt {
   color: rgb(255, 255, 255, 0.5);
+  margin-right: 6%;
 }
 
 .btn-google {

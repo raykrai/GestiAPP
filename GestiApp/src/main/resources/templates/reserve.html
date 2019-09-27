@@ -44,7 +44,7 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-12">
+                        <div class="col-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -56,21 +56,26 @@
                                                 </div>
                                                 <div class="col-sm-6"> </div>
                                             </div>
-                                            <div class="input-group mt-3 mb-3">
-                                                <input type="text" class="form-control"  th:field="*{timeZone}" th:text="*{timeZone.name}" readonly/>
+                                            <div class="form-group mt-3 mb-3">
+                                            <label for="fecha" th:text="#{time}"> Hora:</label> 
+                                                <input type="hidden" class="form-control"  th:field="*{timeZone}" readonly/>
+                                                <input type="text" class="form-control"  th:field="*{timeZone.name}" readonly/>
                                             </div>
-                                            <div class="input-group mt-3 mb-3">
-                                                <input type="text" class="form-control"  th:field="*{roomCategory}" th:text="*{roomCategory.categoryName}" readonly/>
+                                            <div class="form-group mt-3 mb-3">
+                                            <label for="fecha" th:text="#{specialization}"> Especialización:</label>
+                                                <input type="hidden" class="form-control"  th:field="*{roomCategory}" readonly/>
+                                                <input type="text" class="form-control"  th:field="*{roomCategory.categoryName}" readonly/>
                                             </div>
-                                            <div class="input-group mt-3 mb-3">
-                                                <select name="room" th:field="*{reservedRoom}">
+                                            <div class="form-group mt-3 mb-3">
+                                            <label for="fecha" th:text="#{class}"> Clase:</label>
+                                                <select name="room" class="form-control" th:field="*{reservedRoom}">
                                                     <option th:each="room : ${rooms}" th:value="${room.id}"
                                                         th:text="${room.name}" readonly></option>
                                                 </select>
                                             </div>
                                             </br>
                                             <div class="input-group mt-3 mb-3">
-                                            <input class="btn btn-primary btn-danger btn-user btn-block" type="submit" name="enviar" value="Buscar" />
+                                            <input class="btn btn-primary btn-danger btn-user btn-block" type="submit" name="enviar" value="Crear" />
                                             </div>
                                         </form>
                                 </div>

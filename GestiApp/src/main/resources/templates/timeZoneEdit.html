@@ -34,7 +34,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800" th:text="#{admT}">Administrar profesores.</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Formulario de edición</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -44,10 +44,6 @@
                         <!-- Area Chart -->
                         <div class="col-12">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold" th:text="#{listTeacher}">Lista de profesores</h6>
-                                </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <form th:action="@{/admin/timeZoneSubmit}" th:object="${timeZone}" method="post">
@@ -56,7 +52,7 @@
                                         <input type="text" class="form-control" th:field="*{name}" />
                                         <label for="timeZoneTime" th:text="#{timeZone}"> Hora del Tramo:</label>
                                         <input type="time" class="form-control" th:field="*{time}" />
-                                        </br>
+                                        <br>
                                         <input type="submit" class="btn btn-danger" name="enviar" value="Guardar"/>
                                     </form>
                                 </div>
