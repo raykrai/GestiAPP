@@ -346,7 +346,11 @@ public class AdminController {
 	
 	@PostMapping("/admin/timeZoneSubmit")
 	public String timeZoneSubmit(@ModelAttribute("timeZone") TimeZone c) {
-		timeZoneService.edit(c);
+		System.out.println(c);
+		TimeZone timeZone = timeZoneService.findById(c.getId());
+		timeZone.setName(c.getName());
+		timeZone.setTime(c.getTime());
+		timeZoneService.edit(timeZone);
 		return "redirect:/admin/timeZone";
 	}
 

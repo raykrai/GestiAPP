@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -37,6 +38,7 @@ public class TimeZone {
 	private String name;
 
 	@NotNull
+	@DateTimeFormat(iso = ISO.TIME)
 	private LocalTime time;
 
 	/**
