@@ -34,7 +34,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
-                        <h1 class="h3 mb-0 text-gray-800" th:text="#{classroomsCategories}">Aula reservadas</h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{classroomReserves}">Aula reservadas</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -51,7 +51,7 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     
-                                    <p>En el dia escogido para la reserva no se puede reservar.</p>
+                                    <p th:text="#{messReserveDayError}">No se puede hacer la reserva para este dia.</p>
                                     
                                 </div>
                             </div>

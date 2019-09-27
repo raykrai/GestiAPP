@@ -56,6 +56,13 @@
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control form-control-user" name="surname" id="surname" th:field="*{surname}" placeholder="Apellidos" required>
                                             </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="password" class="form-control form-control-user" name="password" id="password"
+                                                        th:field="*{password}" placeholder="Contraseña">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <select id="school" class="custom-select" th:field="*{school}" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user" name="userEmail" id="userEmail" th:field="*{userEmail}" placeholder="Correo electrónico" required>
