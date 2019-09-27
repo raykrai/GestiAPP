@@ -35,7 +35,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
 
-                        <h1 class="h3 mb-0 text-gray-800">Reservas de profesores</h1>
+                        <h1 class="h3 mb-0 text-gray-800" th:text="#{tReserves}">Reservas de profesores</h1>
 
                     </div>
 
@@ -49,7 +49,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 
-                                    <h6 class="m-0 font-weight-bold">Lista de reservas</h6>
+                                    <h6 class="m-0 font-weight-bold" th:text="#{reservationList"}>Lista de reservas</h6>
 
                                 </div>
                                 <!-- Card Body -->
@@ -58,10 +58,10 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">FECHA Y HORA</th>
-                                                <th scope="col">AULA</th>
-                                                <th scope="col">CATEGORÍA</th>
-                                                <th scope="col">PROFESOR</th>
+                                                <th scope="col" th:text="#{date}">FECHA Y HORA</th>
+                                                <th scope="col" th:text="#{class}">AULA</th>
+                                                <th scope="col" th:text="#{category}">CATEGORÍA</th>
+                                                <th scope="col" th:text="#{teacher}">PROFESOR</th>
 
                                                 <th scope="col">❌</th>
                                             </tr>
@@ -84,13 +84,13 @@
                                                           <div class="modal-content">
                                                             <!-- Modal Header -->
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title text-dark">¿Estás seguro?</h4>
+                                                                <h4 class="modal-title text-dark"th:text="#{askSure}">¿Estás seguro?</h4>
                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                             </div>
                                                             <!-- Modal footer -->
                                                             <div class="modal-footer">
                                                                 <a th:href="@{/admin/reserveDel/{id}(id=${reserve.id})}"><button type="button"
-                                                                    class="btn ">Eliminar</button></a>
+                                                                    class="btn" th:text="#{delete}">Eliminar</button></a>
                                                             </div>
                                                           </div>
                                                     	</div>

@@ -51,7 +51,7 @@
                                         <form class="user col-12" th:action="@{/formReserve/save}" th:object="${reserveFormBean}" method="post">
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="fecha"> Fecha:</label> 
+                                                    <label for="fecha" th:text="#{date}"> Fecha:</label> 
                                                     <input type="date" class="form-control"  th:field="*{date}" readonly/>
                                                 </div>
                                                 <div class="col-sm-6"> </div>
