@@ -4,21 +4,21 @@
 package com.salesianostriana.dam.gestiapp.model;
 
 import java.time.LocalTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author jmbargueno
@@ -39,6 +39,8 @@ public class TimeZone {
 	@NotNull
 	@DateTimeFormat(iso = ISO.TIME)
 	private LocalTime time;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "timeZone", orphanRemoval = true)
+	private List <Reserve> reserveList;
 
 	/**
 	 * 
