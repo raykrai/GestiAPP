@@ -121,7 +121,11 @@ public class AdminController {
 		u.setName(userFormBean.getName());
 		u.setSurname(userFormBean.getSurname());
 		u.setUserEmail(userFormBean.getUserEmail());
-		u.setPassword(passwordEncoder.encode(userFormBean.getPassword()));
+		if(!userFormBean.getPassword().equals("")) {
+			u.setPassword(passwordEncoder.encode(userFormBean.getPassword()));
+		}else {
+			u.setPassword(u.getPassword());
+		}
 		u.setAdmin(userFormBean.getAdmin());
 		u.setSchool(userFormBean.getSchool());
 
