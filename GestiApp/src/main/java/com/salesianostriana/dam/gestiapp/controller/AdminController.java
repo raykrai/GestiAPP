@@ -25,6 +25,7 @@ import com.salesianostriana.dam.gestiapp.model.Pager;
 import com.salesianostriana.dam.gestiapp.model.Reserve;
 import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.RoomCategory;
+import com.salesianostriana.dam.gestiapp.model.TimeZone;
 import com.salesianostriana.dam.gestiapp.service.AppUserService;
 import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
@@ -282,7 +283,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/admin/categorySave")
-	public String addCerveza(@ModelAttribute("category") RoomCategory category, Model model) {
+	public String addCategory(@ModelAttribute("category") RoomCategory category, Model model) {
 		RoomCategory catego = new RoomCategory();
 
 		catego.setCategoryName(category.getCategoryName());
@@ -305,6 +306,44 @@ public class AdminController {
 	public String reserveDel(@PathVariable("id") long id) {
 		reserveService.deleteById(id);
 		return "redirect:/admin/reserves";
+	}
+	
+	@GetMapping("/admin/timeZone")
+	public String timeZone(Model model) {
+		
+		model.addAttribute("timeZones", timeZoneService.findAll());
+		model.addAttribute("timeZone", new TimeZone());
+		return "timeZone";
+	}
+	
+	@GetMapping("/admin/timeZoneDel/{id}")
+	public String timeZoneDel(@PathVariable("id") long id) {
+		timeZoneService.deleteById(id);
+		return "redirect:/admin/timeZone";
+	}
+	
+	@PostMapping("/admin/timeZoneSave")
+	public String addTimeZone(@ModelAttribute("timeZone") TimeZone timeZone, Model model) {
+		TimeZone timeZo = timeZone;
+
+		timeZoneService.save(timeZo);
+
+		return "redirect:/admin/roomCategories";
+	}
+	
+	@GetMapping("/admin/timeZoneEdit/{id}")
+	public String timeZoneEdit(@PathVariable("id") long id, Model model) {
+
+		TimeZone timeZone = timeZoneService.findById(id);
+		model.addAttribute("timeZone", timeZone);
+
+		return "timeZoneEdit";
+	}
+	
+	@PostMapping("/admin/timeZoneSubmit")
+	public String timeZoneSubmit(@ModelAttribute("timeZone") TimeZone c) {
+		timeZoneService.edit(c);
+		return "redirect:/admin/timeZone";
 	}
 
 	
