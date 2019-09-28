@@ -8,10 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.salesianostriana.dam.gestiapp.model.TimeZone;
 
-/**
- * @author jmbargueno
- *
- */
 @Repository
 public interface TimeZoneRepository extends JpaRepository<TimeZone, Long>{
 

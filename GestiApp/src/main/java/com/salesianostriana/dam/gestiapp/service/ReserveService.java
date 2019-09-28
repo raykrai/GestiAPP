@@ -14,6 +14,11 @@ import com.salesianostriana.dam.gestiapp.model.RoomCategory;
 import com.salesianostriana.dam.gestiapp.repository.ReserveRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
 
+/**
+ * Clase servicio que gestiona reservas
+ * 
+ * @author José María, Jesús Ceacero, José Manuel, Daniel Troncoso
+ */
 @Service
 public class ReserveService extends BaseService<Reserve, Long, ReserveRepository> {
 

@@ -18,10 +18,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Clase modelo de fecha reservada, esta clase permite definir dias disponibles
+ * Clase modelo de fecha reservada, esta clase permite definir días festivos
  * para reservar o no las aulas
  * 
- * @author jmbargueno
+ * @author José Manuel
  *
  */
 @Data

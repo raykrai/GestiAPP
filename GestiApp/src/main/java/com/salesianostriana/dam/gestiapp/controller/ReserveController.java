@@ -22,6 +22,11 @@ import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
 import com.salesianostriana.dam.gestiapp.service.TimeZoneService;
 
+/**
+ * Esta clase lleva todo lo relacionado con crear una reserva
+ * @author José María y Jesús Ceacero
+ *
+ */
 @Controller
 public class ReserveController {
 
@@ -36,9 +41,12 @@ public class ReserveController {
 	@Autowired
 	private RoomCategoryService roomCategoryService;
 
-	// Cambiar la ruta del mapping con la plantilla del formulario en cuestión , LA
-	// QUE ESTÁ PUESTA ES DE EJEMPLO - 22/09/2019.
-
+	/**
+	 * Formulario de reserva
+	 * @param model
+	 * @return formulario de reserva
+	 */
+	
 	@GetMapping("/formReserve")
 	public String showFormReserve(Model model) {
 		List<TimeZone> timeZoneList = timeZoneService.findAll();
@@ -52,9 +60,12 @@ public class ReserveController {
 
 	}
 
-	// Cambiar la ruta del mapping con la plantilla del formulario en cuestión , LA
-	// QUE ESTÁ PUESTA ES DE EJEMPLO - 22/09/2019.
-
+	/**
+	 * Formulario de reserva donde se elige el aula a reservar
+	 * @param reserveFormBean
+	 * @param model
+	 * @return formulario de reserva
+	 */
 	@PostMapping("/formReserve/submit")
 	public String submitFormReserve(@ModelAttribute("reserveFormBean") ReserveFormBean reserveFormBean, Model model) {
 
@@ -70,7 +81,12 @@ public class ReserveController {
 		}
 
 	}
-
+	
+	/**
+	 * Guarda o no, la reserva, en función de una serie de condiciones
+	 * @param reserveFormBean
+	 * @return lista de reservas
+	 */
 	@PostMapping("/formReserve/save")
 	public String submitFormReserve2(@ModelAttribute("reserveFormBean") ReserveFormBean reserveFormBean) {
 		

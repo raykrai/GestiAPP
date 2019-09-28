@@ -6,7 +6,6 @@ package com.salesianostriana.dam.gestiapp.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import com.salesianostriana.dam.gestiapp.model.*;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +18,7 @@ import com.salesianostriana.dam.gestiapp.service.AppUserService;
 /**
  * Clase que implementa el usuario de seguridad
  * 
- * @author jmbargueno
+ * @author José Manuel
  *
  */
 @Service("userDetailsService")

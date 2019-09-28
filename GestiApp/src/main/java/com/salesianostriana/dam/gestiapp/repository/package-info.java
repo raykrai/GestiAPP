@@ -1,7 +1,5 @@
 /**
- * 
- */
-/**
+ * Paquete que contiene las clases repositorio
  * @author jmbargueno
  *
  */

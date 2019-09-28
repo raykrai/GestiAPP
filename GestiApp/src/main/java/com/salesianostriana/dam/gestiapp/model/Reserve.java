@@ -5,7 +5,6 @@ package com.salesianostriana.dam.gestiapp.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +20,7 @@ import lombok.ToString;
 /**
  * Clase modelo de las reservas.
  * 
- * @author jmbargueno
+ * @author José Manuel
  *
  */
 

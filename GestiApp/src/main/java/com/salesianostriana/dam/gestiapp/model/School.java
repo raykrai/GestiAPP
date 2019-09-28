@@ -25,7 +25,7 @@ import lombok.ToString;
 /**
  * Clase modelo de escuela.
  * 
- * @author jmbargueno
+ * @author José Manuel
  *
  */
 @Data

@@ -21,6 +21,12 @@ import com.salesianostriana.dam.gestiapp.service.AppUserService;
 import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.SchoolService;
 
+/**
+ * Clase que contiene todos los métodos que controlan las acciones llevadas a cabo por un usuario de la aplicación
+ * @author José María, Jesús Ceacero, José Manuel y Daniel Troncoso
+ *
+ */
+
 @Controller
 public class AppUserController {
 
@@ -33,6 +39,11 @@ public class AppUserController {
 	@Autowired
 	private SchoolService schoolService;
 
+	/**
+	 * Devuelve un formulario de registro
+	 * @param model
+	 * @return formulario de registro
+	 */
 	@GetMapping("/formRegister")
 	public String showFormRegister(Model model) {
 
@@ -42,7 +53,13 @@ public class AppUserController {
 		return "register";
 
 	}
-
+	
+	/**
+	 * Registra al usuario
+	 * @param userFormBean
+	 * @param passwordEncoder
+	 * @return inicio
+	 */
 	@PostMapping("/formRegister/submit")
 	public String showFormRegisterSubmit(@ModelAttribute("userFormBean") UserFormBean userFormBean, BCryptPasswordEncoder passwordEncoder) {
 
@@ -61,7 +78,11 @@ public class AppUserController {
 		return "redirect:/";
 	}
 	
-	//Busca el usuario de la sesion actual por el email y lo añadimos como atributo al modelo
+	/**
+	 * Perfil del usuario
+	 * @param model
+	 * @return perfil de usuario
+	 */
 	@GetMapping("/profile")
 	public String showFormProfile(Model model) {
 
@@ -75,8 +96,12 @@ public class AppUserController {
 		return "formProfileShow";
 	}
 	
-	//Busca usuario por id y pilla el de userProfile que es el usuario de la session, guarda en un atributo el objeto encontrado y 
-	//lo mando como atributo profileEdit al POST y el servicio edita el usuario de la session actual
+	/**
+	 * Edita los datos del perfil de usuario
+	 * @param u
+	 * @param model
+	 * @return formulario de edición
+	 */
 	@GetMapping("/profile/{id}")
 	public String showFormProfileEdit(@ModelAttribute("userProfile") AppUser u, Model model) {
 		
@@ -95,7 +120,12 @@ public class AppUserController {
 		
 	}
 	
-	//Guarda en la base de datos el usuario con su nueva edición
+	/**
+	 * Confirma los cambios de edición del perfil de usuario
+	 * @param puser
+	 * @param model
+	 * @return perfil del usuario
+	 */
 	@PostMapping("/profile/submit")
 	public String processFormProfileEdit(@ModelAttribute("profileEdit") AppUser puser, Model model) {
 		
@@ -115,7 +145,12 @@ public class AppUserController {
 		return plantilla;
 	}
 	
-	//Mostrar las reservas del profesor
+	/**
+	 * Lista de las reservas del usuario que tiene la sesión abierta
+	 * @param model
+	 * @return lista de reservas
+	 */
+	
 	@GetMapping("/myreserves")
 	public String showFormReserves(Model model) {
 
@@ -129,7 +164,12 @@ public class AppUserController {
 		return "yourreserves";
 	}
 	
-	//Servicios busca las reserva por id y la elimina
+	
+	/**
+	 * Elimina la reserva elegida
+	 * @param id
+	 * @return lista de reservas
+	 */
 	@GetMapping("/myreserves/{id}")
 	public String myReservesDelete(@PathVariable("id") long id) {
 		
@@ -139,6 +179,11 @@ public class AppUserController {
 		
 	}
 	
+	/**
+	 * Muestra todas las reservas
+	 * @param model
+	 * @return lista de reservas
+	 */
 	@GetMapping("/allreserves")
 	public String showAllReserves(Model model) {
 		

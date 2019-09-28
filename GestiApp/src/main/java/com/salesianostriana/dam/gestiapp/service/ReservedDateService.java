@@ -8,6 +8,12 @@ import com.salesianostriana.dam.gestiapp.model.ReservedDate;
 import com.salesianostriana.dam.gestiapp.repository.ReservedDateRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
 
+/**
+ * Clase servicio que gestiona días festivos
+ * 
+ * @author José María, Jesús Ceacero, José Manuel, Daniel Troncoso
+ */
+
 @Service
 public class ReservedDateService extends BaseService<ReservedDate, Long, ReservedDateRepository> {
 

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.salesianostriana.dam.gestiapp.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +7,10 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @author jmbargueno
- *
+ * Clase que controla las rutas y permisos
+ * @author José Manuel
  */
+
 @Configuration
 @EnableWebMvc
 public class MvcConfig implements WebMvcConfigurer {

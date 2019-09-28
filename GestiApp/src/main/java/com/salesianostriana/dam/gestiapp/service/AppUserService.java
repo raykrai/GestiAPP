@@ -11,6 +11,11 @@ import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.repository.AppUserRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
 
+/**
+ * Clase servicio que gestiona usuarios
+ * 
+ * @author José María, Jesús Ceacero, José Manuel, Daniel Troncoso
+ */
 @Service
 public class AppUserService extends BaseService<AppUser, Long, AppUserRepository> {
 

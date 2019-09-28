@@ -9,6 +9,12 @@ import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.repository.RoomRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
 
+/**
+ * Clase servicio que gestiona las aulas
+ * 
+ * @author José María, Jesús Ceacero, José Manuel, Daniel Troncoso
+ */
+
 @Service
 public class RoomService extends BaseService<Room, Long, RoomRepository> {
 	

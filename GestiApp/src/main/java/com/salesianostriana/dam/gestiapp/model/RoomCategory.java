@@ -20,7 +20,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * @author jmbargueno
+ * Clase modelo de las categorías
+ * @author José Manuel
  *
  */
 

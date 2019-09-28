@@ -5,6 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * Clase que contiene todos los métodos para guardar, editar, eliminar, etc.
+ * @author Luismi
+ *
+ * @param <T>
+ * @param <ID>
+ * @param <R>
+ */
 public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> {
 
 	@Autowired

@@ -2,18 +2,20 @@ package com.salesianostriana.dam.gestiapp.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.gestiapp.model.RoomCategory;
 import com.salesianostriana.dam.gestiapp.repository.RoomCategoryRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
 
+/**
+ * Clase servicio que gestiona categorías
+ * 
+ * @author José María, Jesús Ceacero, José Manuel, Daniel Troncoso
+ */
+
 @Service
 public class RoomCategoryService extends BaseService<RoomCategory, Long, RoomCategoryRepository> {
-	
-	@Autowired
-	private RoomCategoryRepository roomCategoryRepository;
 	
 	@Override
 	public RoomCategory save(RoomCategory t) {

@@ -23,7 +23,7 @@ import lombok.ToString;
 /**
  * Clase modelo de aula.
  * 
- * @author jmbargueno
+ * @author José Manuel
  *
  */
 

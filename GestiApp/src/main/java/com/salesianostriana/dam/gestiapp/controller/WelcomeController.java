@@ -16,8 +16,8 @@ import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.TimeZoneService;
 
 /**
- * 
- * @author jmrlaguna
+ * Esta clase devuelve la plantilla de inicio (calendario semanal)
+ * @author José María
  *
  */
 
@@ -48,6 +48,11 @@ public class WelcomeController {
 		return ddd.after(monday) && ddd.before(nextMonday);
 	}
 	
+	/**
+	 * Muestra el calendario con las reservas de esta semana
+	 * @param model
+	 * @return calendario semanal
+	 */
 	@GetMapping("/")
 	public String getWeekCalendar(Model model) {
 		model.addAttribute("timeZoneList", timeZoneService.findAll());

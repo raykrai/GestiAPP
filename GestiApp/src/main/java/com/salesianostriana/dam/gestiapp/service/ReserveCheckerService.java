@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.salesianostriana.dam.gestiapp.service;
 
 import java.time.LocalDate;
@@ -21,8 +18,9 @@ import com.salesianostriana.dam.gestiapp.repository.ReserveCheckerRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
 
 /**
- * @author jmbargueno
- *
+ * Clase servicio que gestiona el comprobador
+ * 
+ * @author José María, Jesús Ceacero, José Manuel, Daniel Troncoso
  */
 
 @Service

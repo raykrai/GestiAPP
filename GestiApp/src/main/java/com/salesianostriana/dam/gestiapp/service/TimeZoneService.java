@@ -12,9 +12,11 @@ import com.salesianostriana.dam.gestiapp.repository.TimeZoneRepository;
 import com.salesianostriana.dam.gestiapp.service.base.BaseService;
 
 /**
- * @author jmbargueno
- *
+ * Clase servicio que gestiona zonas horarias
+ * 
+ * @author José María, Jesús Ceacero, José Manuel, Daniel Troncoso
  */
+
 @Service
 public class TimeZoneService extends BaseService<TimeZone, Long, TimeZoneRepository> {
 	

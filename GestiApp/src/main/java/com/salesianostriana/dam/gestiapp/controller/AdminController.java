@@ -35,8 +35,8 @@ import com.salesianostriana.dam.gestiapp.service.SchoolService;
 import com.salesianostriana.dam.gestiapp.service.TimeZoneService;
 
 /**
- * 
- * @author jmrlaguna
+ * Clase que contiene todos los métodos que controlan las acciones llevadas a cabo por un admin, así como la impresión de listas para los mismos
+ * @author José María, Jesús Ceacero, José Manuel y Daniel Troncoso
  *
  */
 
@@ -72,16 +72,28 @@ public class AdminController {
 	@Autowired
 	private ReservedDateService reservedDateService;
 	
-	/** VALIDACIÓN **/
-
+/* VALIDACIÓN */
+	
+	/**
+	 * Lista de usuarios sin validar
+	 * @param model
+	 * @return lista de usuarios
+	 */
+	
 	@GetMapping("/admin/validate")
 	public String showFormValidated(Model model) {
 
 		model.addAttribute("users", userService.searchByValitadedFalse());
 		return "userstovalidate";
 	}
-
-	// Coge la id de un usuario en el botón "Validar".
+	
+	/**
+	 * Validación de usuario
+	 * @param id
+	 * @param model
+	 * @return lista de usuarios
+	 */
+	
 	@GetMapping("/admin/validate/{id}")
 	public String FormValidatedEdit(@PathVariable("id") long id, Model model) {
 
@@ -91,11 +103,12 @@ public class AdminController {
 		if (u != null) {
 
 			// Set de true a un usuario y lo guarda
+			
 			model.addAttribute("user", u);
 			u.setValidated(validate);
 			userService.save(u);
 
-			return "redirect:/admin/validate";// le paso el formulario para editar usuarios
+			return "redirect:/admin/validate";
 
 		} else {
 
@@ -103,8 +116,14 @@ public class AdminController {
 		}
 	}
 
-	/** LISTA DE USUARIOS **/
+/** LISTA DE USUARIOS **/
 
+	/**
+	 * Lista de usuarios
+	 * @param model
+	 * @return lista de usuarios
+	 */
+	
 	@GetMapping("/admin/users")
 	public String showUsers(Model model) {
 
@@ -112,20 +131,33 @@ public class AdminController {
 		model.addAttribute("users", users);
 		return "userAdministration";
 	}
-
+	
+	/**
+	 * Elimina el usuario elegido de la lista de usuarios
+	 * @param id
+	 * @param model
+	 * @return lista de usuarios
+	 */
+	
 	@GetMapping("/admin/delUser/{id}")
 	public String delUsers(@PathVariable("id") long id, Model model) {
 		userService.deleteById(id);
 		model.addAttribute("users", userService.findAll());
 		return "redirect:/admin/users";
 	}
-
+	
+	/**
+	 * Confirma la edición del usuario que hemos elegido con anterioridad de la lista
+	 * @param userFormBean
+	 * @param passwordEncoder
+	 * @return lista de usuarios
+	 */
+	
 	@PostMapping("/admin/editUser/submit")
 	public String editUserSubmit(@ModelAttribute("userFormBean") UserFormBean userFormBean,
 			BCryptPasswordEncoder passwordEncoder) {
 
 		AppUser u = userService.findById(userFormBean.getId());
-//		u.setId(userFormBean.getId());
 		u.setName(userFormBean.getName());
 		u.setSurname(userFormBean.getSurname());
 		u.setUserEmail(userFormBean.getUserEmail());
@@ -141,7 +173,14 @@ public class AdminController {
 
 		return "redirect:/admin/users";
 	}
-
+	
+	/**
+	 * Nos abre el formulario de edición para el usuario elegido de la lista
+	 * @param id
+	 * @param model
+	 * @return formulario de edición o lista de usuarios
+	 */
+	
 	@GetMapping("/admin/editUser/{id}")
 	public String editUser(@PathVariable("id") long id, Model model) {
 		model.addAttribute("listSchool", schoolService.findAll());
@@ -159,8 +198,16 @@ public class AdminController {
 
 	
 
-	/** LISTA DE AULAS **/
+/** AULAS **/
 
+	/**
+	 * Lista de aulas
+	 * @param pageSize
+	 * @param page
+	 * @param model
+	 * @return lista de aulas
+	 */
+	
 	@GetMapping("/admin/rooms")
 	public String showRooms(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, Model model) {
@@ -192,14 +239,28 @@ public class AdminController {
 		model.addAttribute("pager", pager);
 		return "roomAdministration";
 	}
-
+	
+	/**
+	 * Elimina el aula seleccionada de la lista
+	 * @param id
+	 * @param model
+	 * @return lista de aulas
+	 */
+	
 	@GetMapping("/admin/delRoom/{id}")
 	public String delRooms(@PathVariable("id") long id, Model model) {
 		roomService.deleteById(id);
 		model.addAttribute("rooms", roomService.findAll());
 		return "redirect:/admin/rooms";
 	}
-
+	
+	/**
+	 * Muestra el formulario de edición del aula seleccionada de la lista
+	 * @param id
+	 * @param model
+	 * @return formulario de edición
+	 */
+	
 	@GetMapping("/admin/editRoom/{id}")
 	public String editRoom(@PathVariable("id") long id, Model model) {
 
@@ -209,14 +270,25 @@ public class AdminController {
 		return "formRoomEdit";
 
 	}
-
+	
+	/**
+	 * Confirma la edición del aula seleccionada
+	 * @param room
+	 * @return lista de aulas
+	 */
 	@PostMapping("/admin/editRoom/submit")
 	public String editRoomSubmit(@ModelAttribute("room") Room room) {
 
 		roomService.edit(room);
 		return "redirect:/admin/rooms";
 	}
-
+	
+	/**
+	 * Añade un aula nueva
+	 * @param room
+	 * @param model
+	 * @return lista de aulas
+	 */
 	@PostMapping("/admin/roomSave")
 	public String addCerveza(@ModelAttribute("room") Room room, Model model) {
 
@@ -225,8 +297,14 @@ public class AdminController {
 		return "redirect:/admin/rooms";
 	}
 
-	/** LISTA DE CATEGORÍAS **/
-
+/** LISTA DE CATEGORíAS **/
+	
+	/**
+	 * Lista de categorías
+	 * @param model
+	 * @return lista de categorías
+	 */
+	
 	@GetMapping("/admin/roomCategories")
 	public String roomCategory(Model model) {
 
@@ -235,7 +313,13 @@ public class AdminController {
 		model.addAttribute("category", new RoomCategory());
 		return "roomCategories";
 	}
-
+	
+	/**
+	 * Muestra el formulario de edición de categoría
+	 * @param id
+	 * @param model
+	 * @return formulario de edición
+	 */
 	@GetMapping("/admin/editCategory/{id}")
 	public String editCategory(@PathVariable("id") long id, Model model) {
 
@@ -244,19 +328,35 @@ public class AdminController {
 
 		return "roomCategoryEdit";
 	}
-
+	
+	/**
+	 * Confirma la edición de la categoría
+	 * @param c
+	 * @return lista de categorías
+	 */
 	@PostMapping("/admin/categorySubmit")
 	public String procesarCerveza(@ModelAttribute("category") RoomCategory c) {
 		roomCategoryService.edit(c);
 		return "redirect:/admin/roomCategories";
 	}
-
+	
+	/**
+	 * Elimina la categoría que elijamos de la lista
+	 * @param id
+	 * @return lista de categorías
+	 */
 	@GetMapping("/admin/categoryDel/{id}")
 	public String roomCategoryDel(@PathVariable("id") long id) {
 		roomCategoryService.deleteById(id);
 		return "redirect:/admin/roomCategories";
 	}
-
+	
+	/**
+	 * Añade una categoría nueva
+	 * @param category
+	 * @param model
+	 * @return lista de categorías
+	 */
 	@PostMapping("/admin/categorySave")
 	public String addCategory(@ModelAttribute("category") RoomCategory category, Model model) {
 		RoomCategory catego = new RoomCategory();
@@ -268,7 +368,13 @@ public class AdminController {
 		return "redirect:/admin/roomCategories";
 	}
 
-	/** RESERVAS **/
+/** RESERVAS **/
+	
+	/**
+	 * Lista de reservas
+	 * @param model
+	 * @return lista de reservas
+	 */
 	@GetMapping("/admin/reserves")
 	public String showReserves(Model model) {
 
@@ -276,13 +382,23 @@ public class AdminController {
 		model.addAttribute("reserves", reserves);
 		return "reserveAdministration";
 	}
-
+	
+	/**
+	 * Elimina la reserva seleccionada de la lista
+	 * @param id
+	 * @return lista de reservas
+	 */
 	@GetMapping("/admin/reserveDel/{id}")
 	public String reserveDel(@PathVariable("id") long id) {
 		reserveService.deleteById(id);
 		return "redirect:/admin/reserves";
 	}
 	
+	/**
+	 * Lista de zonas horarias
+	 * @param model
+	 * @return lista de horas
+	 */
 	@GetMapping("/admin/timeZone")
 	public String timeZone(Model model) {
 		
@@ -291,12 +407,23 @@ public class AdminController {
 		return "timeZone";
 	}
 	
+	/**
+	 * Elimina la zona seleccionada
+	 * @param id
+	 * @return lista de horas
+	 */
 	@GetMapping("/admin/timeZoneDel/{id}")
 	public String timeZoneDel(@PathVariable("id") long id) {
 		timeZoneService.deleteById(id);
 		return "redirect:/admin/timeZone";
 	}
 	
+	/**
+	 * Añadir zona horaria
+	 * @param timeZone
+	 * @param model
+	 * @return lista de horas
+	 */
 	@PostMapping("/admin/timeZoneSave")
 	public String addTimeZone(@ModelAttribute("timeZone") TimeZone timeZone, Model model) {
 		TimeZone timeZo = timeZone;
@@ -306,6 +433,12 @@ public class AdminController {
 		return "redirect:/admin/timeZone";
 	}
 	
+	/**
+	 * Muestra el formulario de edición para la zona seleccionada
+	 * @param id
+	 * @param model
+	 * @return formulario de edición
+	 */
 	@GetMapping("/admin/timeZoneEdit/{id}")
 	public String timeZoneEdit(@PathVariable("id") long id, Model model) {
 
@@ -315,6 +448,11 @@ public class AdminController {
 		return "timeZoneEdit";
 	}
 	
+	/**
+	 * Confirma la edición de la zona seleccionada
+	 * @param c
+	 * @return lista de horas
+	 */
 	@PostMapping("/admin/timeZoneSubmit")
 	public String timeZoneSubmit(@ModelAttribute("timeZone") TimeZone c) {
 		System.out.println(c);
@@ -325,12 +463,24 @@ public class AdminController {
 		return "redirect:/admin/timeZone";
 	}
 
+/** FINES DE SEMANA **/
+	
+	/**
+	 * Panel de fines de semana
+	 * @param model
+	 * @return panel de findes
+	 */
 	@GetMapping("/admin/weekend")
 	public String showWeekendPanel(Model model) {
 		model.addAttribute("checker", reserveCheckerService.findAll().get(0));
 		return "weekendAdministration";
 	}
 	
+	/**
+	 * Confirma la activación o desactivación de los fines de semana
+	 * @param checker
+	 * @return panel de findes
+	 */
 	@PostMapping("/admin/weekend/edit")
 	public String weekendEdit(@ModelAttribute("checker") ReserveChecker checker) {
 
@@ -339,6 +489,11 @@ public class AdminController {
 		return "redirect:/admin/weekend";
 	}
 	
+	/**
+	 * Lista de días festivos
+	 * @param model
+	 * @return lista de días festivos
+	 */
 	@GetMapping("/admin/festive")
 	public String showFestivePanel(Model model) {
 		
@@ -347,6 +502,12 @@ public class AdminController {
 		return "festiveDays";
 	}
 	
+	/**
+	 * Guarda un día festivo nuevo
+	 * @param festive
+	 * @param model
+	 * @return lista de días festivos
+	 */
 	@PostMapping("/admin/festiveSave")
 	public String addFestiveDay(@ModelAttribute("festive") ReservedDate festive, Model model) {
 		ReservedDate rd = new ReservedDate();
@@ -357,6 +518,11 @@ public class AdminController {
 		return "redirect:/admin/festive";
 	}
 	
+	/**
+	 * Elimina un día festivo de la lista
+	 * @param id
+	 * @return lista de días festivos
+	 */
 	@GetMapping("/admin/festiveDel/{id}")
 	public String festiveDel(@PathVariable("id") long id) {
 		reservedDateService.deleteById(id);

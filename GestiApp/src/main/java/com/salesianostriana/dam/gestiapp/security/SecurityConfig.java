@@ -13,7 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * @author jmbargueno
+ * Clase que se encarga de la seguridad
+ * @author José Manuel y José María
  *
  */
 @Configuration

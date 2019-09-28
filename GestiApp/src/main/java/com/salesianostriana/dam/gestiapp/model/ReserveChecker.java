@@ -14,7 +14,8 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * @author jmbargueno
+ * Clase modelo para el chequeador de fines de semana
+ * @author José Manuel
  *
  */
 
