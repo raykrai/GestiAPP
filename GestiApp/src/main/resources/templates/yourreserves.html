@@ -63,7 +63,6 @@
 											<tr>
 												<th scope="col">ID</th>
 												<th scope="col" th:text="#{class}">CLASE</th>
-												<th scope="col" th:text="#{teacher}">PROFESOR</th>
 												<th scope="col" th:text="#{date}">FECHA</th>
 												<th scope="col" th:text="#{time}">HORA</th>
 												<th scope="col">❌</th>
@@ -74,7 +73,6 @@
 											<tr th:each="reserve : ${myReserve}">
 												<td th:text="${reserve.id}"></td>
 												<td th:text="${reserve.reservedRoom.name}"></td>
-												<td th:text="${reserve.reserveUser.name}"></td>
 												<td th:text="${#temporals.format(reserve.date, 'dd/MM/yyyy')}"></td>
 												<td th:text="${reserve.timeZone.time}"></td>
 												<td><a href="#" data-toggle="modal" data-target="#delete" th:attr="data-target='#modalBorrar'+${reserve.id}">❌</a>

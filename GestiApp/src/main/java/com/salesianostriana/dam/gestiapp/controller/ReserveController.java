@@ -20,7 +20,6 @@ import com.salesianostriana.dam.gestiapp.service.AppUserService;
 import com.salesianostriana.dam.gestiapp.service.ReserveCheckerService;
 import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
-import com.salesianostriana.dam.gestiapp.service.RoomService;
 import com.salesianostriana.dam.gestiapp.service.TimeZoneService;
 
 @Controller
@@ -30,8 +29,6 @@ public class ReserveController {
 	private ReserveService reserveService;
 	@Autowired
 	private ReserveCheckerService reserveCheckerService;
-	@Autowired
-	private RoomService roomService;
 	@Autowired
 	private AppUserService appUserService;
 	@Autowired

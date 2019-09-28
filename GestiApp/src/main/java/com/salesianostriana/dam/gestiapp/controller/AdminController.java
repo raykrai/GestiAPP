@@ -1,9 +1,6 @@
 package com.salesianostriana.dam.gestiapp.controller;
 
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +20,15 @@ import com.salesianostriana.dam.gestiapp.formbeans.UserFormBean;
 import com.salesianostriana.dam.gestiapp.model.AppUser;
 import com.salesianostriana.dam.gestiapp.model.Pager;
 import com.salesianostriana.dam.gestiapp.model.Reserve;
+import com.salesianostriana.dam.gestiapp.model.ReserveChecker;
+import com.salesianostriana.dam.gestiapp.model.ReservedDate;
 import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.RoomCategory;
 import com.salesianostriana.dam.gestiapp.model.TimeZone;
 import com.salesianostriana.dam.gestiapp.service.AppUserService;
+import com.salesianostriana.dam.gestiapp.service.ReserveCheckerService;
 import com.salesianostriana.dam.gestiapp.service.ReserveService;
+import com.salesianostriana.dam.gestiapp.service.ReservedDateService;
 import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
 import com.salesianostriana.dam.gestiapp.service.RoomService;
 import com.salesianostriana.dam.gestiapp.service.SchoolService;
@@ -61,9 +62,16 @@ public class AdminController {
 
 	@Autowired
 	private ReserveService reserveService;
+	
+	@Autowired
+	private ReserveCheckerService reserveCheckerService;
+	
 	@Autowired
 	private TimeZoneService timeZoneService;
-
+	
+	@Autowired
+	private ReservedDateService reservedDateService;
+	
 	/** VALIDACIÓN **/
 
 	@GetMapping("/admin/validate")
@@ -317,5 +325,42 @@ public class AdminController {
 		return "redirect:/admin/timeZone";
 	}
 
+	@GetMapping("/admin/weekend")
+	public String showWeekendPanel(Model model) {
+		model.addAttribute("checker", reserveCheckerService.findAll().get(0));
+		return "weekendAdministration";
+	}
+	
+	@PostMapping("/admin/weekend/edit")
+	public String weekendEdit(@ModelAttribute("checker") ReserveChecker checker) {
+
+		reserveCheckerService.edit(checker);
+		
+		return "redirect:/admin/weekend";
+	}
+	
+	@GetMapping("/admin/festive")
+	public String showFestivePanel(Model model) {
+		
+		model.addAttribute("festives", reservedDateService.findAll());
+		model.addAttribute("festive", new ReservedDate());
+		return "festiveDays";
+	}
+	
+	@PostMapping("/admin/festiveSave")
+	public String addFestiveDay(@ModelAttribute("festive") ReservedDate festive, Model model) {
+		ReservedDate rd = new ReservedDate();
+
+		rd.setDate(festive.getDate());
+
+		reservedDateService.save(rd);
+		return "redirect:/admin/festive";
+	}
+	
+	@GetMapping("/admin/festiveDel/{id}")
+	public String festiveDel(@PathVariable("id") long id) {
+		reservedDateService.deleteById(id);
+		return "redirect:/admin/festive";
+	}
 	
 }

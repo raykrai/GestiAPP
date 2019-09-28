@@ -22,6 +22,10 @@ public class ReserveService extends BaseService<Reserve, Long, ReserveRepository
 	@Autowired
 	RoomService roomService;
 	
+	public List<Reserve> findAll(long id){
+		return reserveRepository.findAll();
+	}
+	
 	public List<Reserve> findAllByReserveUserId(long id){
 		return reserveRepository.findAllByReserveUserId(id);
 	}
@@ -65,5 +69,6 @@ public class ReserveService extends BaseService<Reserve, Long, ReserveRepository
 		return findReserve;
 		
 	}
+	
 	
 }

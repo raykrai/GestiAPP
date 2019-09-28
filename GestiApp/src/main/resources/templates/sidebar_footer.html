@@ -68,12 +68,15 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header" th:text="#{admin}">Administración</h6>
             <a class="collapse-item" href="#" th:href="@{/admin/validate}" th:text="#{validate}">Validación de profesores</a>
-            <a class="collapse-item" href="#" th:href="@{/admin/users}" th:text="#{admT}">Administrar profesores</a>
-            <a class="collapse-item" href="#" th:href="@{/admin/reserves}" th:text="#{admReserve}">Administrar reservas</a>
-            <a class="collapse-item" href="roomAdministration.html" th:href="@{/admin/rooms}" th:text="#{admRooms}">Administrar aulas</a>
-            <a class="collapse-item" href="roomCategorys.html" th:href="@{/admin/roomCategories}" th:text="#{admC}">Administrar categorías</a>
-            <a class="collapse-item" href="#" th:href="@{/admin/timeZone}" th:text="#{admZ}">Administrar horas</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/users}" th:text="#{admT}">Profesores</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/reserves}" th:text="#{admReserve}">Reservas</a>
+            <a class="collapse-item" href="roomAdministration.html" th:href="@{/admin/rooms}" th:text="#{admRooms}">Aulas</a>
+            <a class="collapse-item" href="roomCategorys.html" th:href="@{/admin/roomCategories}" th:text="#{admC}">Categorías</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/timeZone}" th:text="#{admZ}">Horas</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/weekend}" th:text="#{admfd}">Fines de semana</a>
+            <a class="collapse-item" href="#" th:href="@{/admin/festive}" th:text="#{festive}">Días festivos</a>
           </div>
         </div>
       </li>

@@ -5,12 +5,15 @@ package com.salesianostriana.dam.gestiapp.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.salesianostriana.dam.gestiapp.model.Reserve;
 import com.salesianostriana.dam.gestiapp.model.ReserveChecker;
+import com.salesianostriana.dam.gestiapp.model.Reserve;
 import com.salesianostriana.dam.gestiapp.model.ReservedDate;
 import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.TimeZone;
@@ -36,7 +39,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 
 	@Autowired
 	ReservedDateService reserveDateService;
-
+	
 	// No usar este metodo. checkea fines de semana. Si devuelve true, significa que
 	// el weekend esta activo, se puede reservar.
 	public Boolean checkWeekend(LocalDate localDate) {
@@ -140,6 +143,47 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 
 		return result;
 
+	}
+	
+	@Override
+	public ReserveChecker save(ReserveChecker t) {
+		// TODO Auto-generated method stub
+		return super.save(t);
+	}
+
+	@Override
+	public ReserveChecker edit(ReserveChecker t) {
+		// TODO Auto-generated method stub
+		return super.edit(t);
+	}
+
+	@Override
+	public void delete(ReserveChecker t) {
+		// TODO Auto-generated method stub
+		super.delete(t);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		super.deleteById(id);
+	}
+
+	@Override
+	public ReserveChecker findById(Long id) {
+		// TODO Auto-generated method stub
+		return super.findById(id);
+	}
+
+	@Override
+	public List<ReserveChecker> findAll() {
+		// TODO Auto-generated method stub
+		return super.findAll();
+	}
+	
+	public Page<ReserveChecker> findAllPageable(Pageable pageable) {
+        
+		 return reserveCheckerRepository.findAll(pageable);
 	}
 
 }

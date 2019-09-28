@@ -12,11 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.salesianostriana.dam.gestiapp.model.Reserve;
-import com.salesianostriana.dam.gestiapp.service.AppUserService;
 import com.salesianostriana.dam.gestiapp.service.ReserveService;
-import com.salesianostriana.dam.gestiapp.service.RoomCategoryService;
-import com.salesianostriana.dam.gestiapp.service.RoomService;
-import com.salesianostriana.dam.gestiapp.service.SchoolService;
 import com.salesianostriana.dam.gestiapp.service.TimeZoneService;
 
 /**
