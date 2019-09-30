@@ -113,9 +113,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		LocalDate actualDate = LocalDate.now();
 		LocalTime actualTime = LocalTime.now();
 
-		System.out.println(localDate + timeZone.getName() + room.getName());
-		System.out.println(actualDate);
-		System.out.println(actualTime);
+		
 
 		// Si el dia que le pasamos no es anterior al de hoy
 		if (!localDate.isBefore(actualDate)) {
