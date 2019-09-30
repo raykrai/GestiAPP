@@ -83,7 +83,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		} else {
 			for (Reserve reserve : reserveService.findAll()) {
 				// Comprueba fecha
-				if (reserve.getDate() == ldate) {
+				if (reserve.getDate().equals(ldate)) {
 					// Comprueba hora
 					if (!reserve.getTimeZone().getTime().equals(timeZone.getTime())) {
 						result = true;
