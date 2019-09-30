@@ -62,10 +62,12 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		boolean result = false;
 
 		for (ReservedDate rDate : reservedDateService.findAll()) {
-			if (rDate.getDate() == ldate) {
+			if (rDate.getDate().equals(ldate)) {
+				
 				result = true;
 			}
 		}
+
 		return result;
 
 	}
