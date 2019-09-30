@@ -6,14 +6,10 @@ Aplicación desarrollada para poder suplir la necesidad de gestionar reservas de
 
 Administrador:
 
-Email: 
-> admin@admin.com
-Contraseña: 
-> 123
+Email: `admin@admin.com`
+Contraseña: `123`
 
 Usuario/Profesor:
 
-Email: 
-> user@user.com
-Contraseña: 
-> 123
+Email: `user@user.com`
+Contraseña: `123`
