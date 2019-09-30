@@ -17,7 +17,7 @@ import com.salesianostriana.dam.gestiapp.service.TimeZoneService;
 
 /**
  * Esta clase devuelve la plantilla de inicio (calendario semanal)
- * @author Jose Manuel
+ * @author Jose Manuel, Jose Maria
  *
  */
 
