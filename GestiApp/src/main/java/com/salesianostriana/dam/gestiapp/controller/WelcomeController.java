@@ -44,8 +44,8 @@ public class WelcomeController {
 
 		Date monday = c.getTime();
 		Date nextMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
-
-		return ddd.after(monday) && ddd.before(nextMonday);
+		
+		return ddd.after(monday) ||ddd.equals(monday) && ddd.before(nextMonday);
 	}
 	
 	/**
