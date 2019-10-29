@@ -51,9 +51,9 @@ public class ReserveCheckerServiceTest {
 		reserveData.add(new Reserve());
 		reserveData.add(new Reserve());
 		
-		new ReservedDate(1, LocalDate.of(2019, 10, 31)),
-		new ReservedDate(1, LocalDate.of(2019, 10, 28)),
-		new ReservedDate(2, LocalDate.of(2019, 10, 21))
+		reservedDateData.add(new ReservedDate(1, LocalDate.of(2019, 10, 31)));
+		reservedDateData.add(new ReservedDate(1, LocalDate.of(2019, 10, 28)));
+		reservedDateData.add(new ReservedDate(2, LocalDate.of(2019, 10, 21)));
 	}
 
 	
