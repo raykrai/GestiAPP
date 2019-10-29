@@ -62,10 +62,12 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		boolean result = false;
 
 		for (ReservedDate rDate : reservedDateService.findAll()) {
-			if (rDate.getDate() == ldate) {
+			if (rDate.getDate().equals(ldate)) {
+				
 				result = true;
 			}
 		}
+
 		return result;
 
 	}
@@ -81,7 +83,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		} else {
 			for (Reserve reserve : reserveService.findAll()) {
 				// Comprueba fecha
-				if (reserve.getDate() == ldate) {
+				if (reserve.getDate().equals(ldate)) {
 					// Comprueba hora
 					if (!reserve.getTimeZone().getTime().equals(timeZone.getTime())) {
 						result = true;
@@ -111,9 +113,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		LocalDate actualDate = LocalDate.now();
 		LocalTime actualTime = LocalTime.now();
 
-		System.out.println(localDate + timeZone.getName() + room.getName());
-		System.out.println(actualDate);
-		System.out.println(actualTime);
+		
 
 		// Si el dia que le pasamos no es anterior al de hoy
 		if (!localDate.isBefore(actualDate)) {
