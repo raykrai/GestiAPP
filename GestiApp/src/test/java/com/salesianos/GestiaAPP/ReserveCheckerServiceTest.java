@@ -8,9 +8,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.assertj.core.util.Arrays;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -25,6 +26,7 @@ import com.salesianostriana.dam.gestiapp.service.ReserveCheckerService;
 import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.ReservedDateService;
 
+@RunWith(JUnitPlatform.class)
 public class ReserveCheckerServiceTest {
 
 	@InjectMocks
@@ -45,7 +47,7 @@ public class ReserveCheckerServiceTest {
 	@Mock
 	private static List<ReservedDate> reservedDateData = new ArrayList<ReservedDate>();
 
-	@BeforeEach
+	@BeforeAll
 	public void initMocks() {
 		MockitoAnnotations.initMocks(this);
 		reserveData.add(new Reserve());
@@ -74,7 +76,7 @@ public class ReserveCheckerServiceTest {
 	public final void notFreeDateTest() {
 		when(reserveDateService.findAll()).thenReturn(reservedDateData);
 		boolean result = rCService.checkFreeDate(LocalDate.of(2019, 10, 28));
-		assertEquals(true, result);
+		assertEquals(false, result);
 	}
 
 	@Test
