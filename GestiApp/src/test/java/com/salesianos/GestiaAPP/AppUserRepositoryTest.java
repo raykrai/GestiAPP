@@ -2,6 +2,9 @@ package com.salesianos.GestiaAPP;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -21,8 +24,8 @@ class AppUserRepositoryTest {
 	@Autowired
 	AppUserRepository appUserRepository;
 	
-	@Test
-	public void testEncontrarPrimeroPorEmail() {
+	@BeforeEach
+	public void cargar() {
 		
 		AppUser a= new AppUser();
 		a.setName("Daniel");
@@ -34,11 +37,23 @@ class AppUserRepositoryTest {
 		a.setReserveList(null);
 		a.setSchool(null);
 		entityManager.persist(a);
-		
-		AppUser user = appUserRepository.findFirstByUserEmail(a.getUserEmail());
+	}
+	
+	@Test
+	public void testEncontrarPrimeroPorEmail() {
+	
+		AppUser user = appUserRepository.findFirstByUserEmail("buenas@gmail.com");
 		
 		assertThat(user.getName()).isEqualTo("Daniel");
 		
+	}
+	
+	@Test
+	public void testEncontrarUsuarioValidatedFalse() {
+		
+		List<AppUser> user = appUserRepository.findAllByValidatedFalse();
+		
+		assertThat(user).hasSize(1);
 	}
 
 }
