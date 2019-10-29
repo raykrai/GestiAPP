@@ -22,6 +22,7 @@ import com.salesianostriana.dam.gestiapp.model.Room;
 import com.salesianostriana.dam.gestiapp.model.RoomCategory;
 import com.salesianostriana.dam.gestiapp.model.School;
 import com.salesianostriana.dam.gestiapp.model.TimeZone;
+import com.salesianostriana.dam.gestiapp.repository.ReserveCheckerRepository;
 import com.salesianostriana.dam.gestiapp.service.ReserveCheckerService;
 import com.salesianostriana.dam.gestiapp.service.ReserveService;
 import com.salesianostriana.dam.gestiapp.service.ReservedDateService;
@@ -31,6 +32,9 @@ public class ReserveCheckerServiceTest {
 
 	@InjectMocks
 	private ReserveCheckerService rCService;
+	
+	@Mock
+	ReserveCheckerRepository rCRepository;
 
 	@Mock
 	ReservedDateService reservedDateService;
@@ -50,22 +54,11 @@ public class ReserveCheckerServiceTest {
 
 	private List<Reserve> emptyReserveData = new ArrayList<Reserve>();
 
-//	@BeforeAll
-//	public void addTo() {
-//
-//		reserveData.add(new Reserve());
-//		reserveData.add(new Reserve());
-//
-//		reservedDateData.add(new ReservedDate(1, LocalDate.of(2019, 10, 31)));
-//		reservedDateData.add(new ReservedDate(1, LocalDate.of(2019, 10, 28)));
-//		reservedDateData.add(new ReservedDate(2, LocalDate.of(2019, 10, 21)));
-//	}
+	private  Room room = new Room(1L, "Aula", new School(), new RoomCategory());
 
-	@Mock
-	private static Room room = new Room(1L, "Aula", new School(), new RoomCategory());
+	private  TimeZone timeZone = new TimeZone(1L, "Octava", LocalTime.of(20, 00));
 
-	@Mock
-	private static TimeZone timeZone = new TimeZone(1L, "Octava", LocalTime.of(20, 00));
+
 
 	@Test
 	public final void isFreeDateTest() {
@@ -83,7 +76,7 @@ public class ReserveCheckerServiceTest {
 
 	@Test
 	public final void isWeekendTest() {
-		when(rCService.findAll().get(0).getWeekendOn()).thenReturn(true);
+		when(rCRepository.findAll().get(0).getWeekendOn()).thenReturn(true);
 		boolean result = rCService.checkWeekend(LocalDate.of(2019, 10, 26));
 		assertTrue(result);
 
@@ -91,7 +84,7 @@ public class ReserveCheckerServiceTest {
 
 	@Test
 	public final void notWeekendTest() {
-		when(rCService.findAll().get(0).getWeekendOn()).thenReturn(true);
+		when(rCRepository.findAll().get(0).getWeekendOn()).thenReturn(true);
 		boolean result = rCService.checkWeekend(LocalDate.of(2019, 10, 28));
 		assertFalse(result);
 
@@ -123,9 +116,8 @@ public class ReserveCheckerServiceTest {
 	@Test
 	public final void checkReserveDateAndReservedTest() {
 		when(reserveService.findAll()).thenReturn(emptyReserveData);
-		when(reserveService.findAll()).thenReturn(reserveData);
 		boolean result = rCService.checkReservedDate(LocalDate.of(2019, 10, 29), timeZone, room);
-		assertFalse(result);
+		assertTrue(result);
 	}
 
 	@Test

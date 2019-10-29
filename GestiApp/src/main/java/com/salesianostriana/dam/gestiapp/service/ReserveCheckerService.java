@@ -46,7 +46,7 @@ public class ReserveCheckerService extends BaseService<ReserveChecker, Long, Res
 		// Si el dia es sabado o domingo
 		if (dayOfWeek == 6 || dayOfWeek == 7) {
 			// Si el fin de semana esta activo
-			if (this.findAll().get(0).getWeekendOn() == true) {
+			if (reserveCheckerRepository.findAll().get(0).getWeekendOn() == true) {
 				return true;
 			} else {
 				return false;
