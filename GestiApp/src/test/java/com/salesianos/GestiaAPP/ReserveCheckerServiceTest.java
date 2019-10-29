@@ -5,11 +5,12 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.assertj.core.util.Arrays;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -37,20 +38,24 @@ public class ReserveCheckerServiceTest {
 
 	@Mock
 	ReservedDateService reserveDateService;
+	
+	@Mock
+	private static List<Reserve> reserveData = new ArrayList<Reserve>();
+	
+	@Mock
+	private static List<ReservedDate> reservedDateData = new ArrayList<ReservedDate>();
 
-	@Before
+	@BeforeEach
 	public void initMocks() {
 		MockitoAnnotations.initMocks(this);
+		reserveData.add(new Reserve());
+		reserveData.add(new Reserve());
+		
+		new ReservedDate(1, LocalDate.of(2019, 10, 31)),
+		new ReservedDate(1, LocalDate.of(2019, 10, 28)),
+		new ReservedDate(2, LocalDate.of(2019, 10, 21))
 	}
 
-	@Mock
-	private static List<ReservedDate> reservedDateData = Arrays.asList(
-			new ReservedDate(1, LocalDate.of(2019, 10, 31)),
-			new ReservedDate(1, LocalDate.of(2019, 10, 28)),
-			new ReservedDate(2, LocalDate.of(2019, 10, 21)));
-	@Mock
-	private static List<Reserve> reserveData = Arrays.asList(
-			new Reserve(), new Reserve());
 	
 	@Mock
 	private static Room room = new Room(1L, "Aula", new School(), new RoomCategory());
