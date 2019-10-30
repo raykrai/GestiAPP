@@ -1,4 +1,4 @@
-package com.salesianos.GestiaAPP;
+package com.salesianostriana.dam.gestiapp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -53,7 +53,7 @@ class AppUserRepositoryTest {
 		
 		List<AppUser> user = appUserRepository.findAllByValidatedFalse();
 		
-		assertThat(user).hasSize(1);
+		assertThat(user).hasSize(4);
 	}
 
 }

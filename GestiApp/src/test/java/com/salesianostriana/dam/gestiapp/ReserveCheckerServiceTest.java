@@ -1,4 +1,4 @@
-package com.salesianos.GestiaAPP;
+package com.salesianostriana.dam.gestiapp;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
