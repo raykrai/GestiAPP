@@ -1,6 +1,6 @@
-# Gesti App
+# GestiApp
 
-Aplicación desarrollada para poder suplir la necesidad de gestionar reservas de aulas en centros educativos
+Aplicación desarrollada en Java para poder suplir la necesidad de gestionar reservas de aulas en centros educativos
 
 ## Usuarios para acceder a la aplicación:
 
